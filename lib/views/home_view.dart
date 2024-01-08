@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/views/home/character_view.dart';
-import 'package:rpg_keeper_hub/views/home/table_view.dart';
+import 'package:rpg_keeper_hub/views/Home/Character%20View/menu_character_view.dart';
+import 'package:rpg_keeper_hub/views/Home/Table%20View/menu_table_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: const Text(
-            'RPG Keeper HUB',
+            'RPG Keeper',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           bottom: const TabBar(
@@ -31,26 +31,26 @@ class HomeView extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.recent_actors_rounded),
+                        Icon(Icons.castle_rounded),
                         SizedBox(width: 10),
-                        Text('Characters'),
+                        Text('Tables'),
                       ]),
                 ),
                 Tab(
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.castle_rounded),
+                        Icon(Icons.recent_actors_rounded),
                         SizedBox(width: 10),
-                        Text('Tables'),
+                        Text('Characters'),
                       ]),
                 ),
               ]),
         ),
         body: const TabBarView(
           children: [
+            MenuTableView(),
             CharacterView(),
-            TableView(),
           ],
         ),
       ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../components/character_sheet_view.dart';
-import '../../components/comp_card_default.dart';
-import '../../models/character.dart';
-import '../../models/class.dart';
+import 'character_sheet_view.dart';
+import '../../../components/comp_card_default.dart';
+import '../../../models/character.dart';
+import '../../../models/class.dart';
 
 class CharacterView extends StatefulWidget {
   const CharacterView({super.key});

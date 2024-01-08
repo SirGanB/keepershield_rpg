@@ -20,14 +20,12 @@ class CompBtnDefault extends StatelessWidget {
         fixedSize: const Size(250, 80),
         backgroundColor: Colors.grey,
       ),
-      child: Expanded(
-        child: Text(
-          title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-            fontSize: 20.0,
-          ),
+      child: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          fontSize: 20.0,
         ),
       ),
     );
