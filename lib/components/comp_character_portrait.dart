@@ -7,65 +7,72 @@ class CompCharacterPortrait extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 5, 5, 5),
-      color: Colors.black,
+      color: Colors.grey[700],
       height: 150,
       width: 150,
       child:
-          Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-        Text(
-          'Mallaggor Skashraii'.toUpperCase(),
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 10,
+          Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Container(
+          height: 25,
+          width: 150,
+          color: const Color.fromARGB(130, 0, 0, 0),
+          child: Center(
+            child: Text(
+              'Character Name'.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
           ),
         ),
         const Icon(
           Icons.account_circle,
-          color: Colors.white,
-          size: 80,
+          color: Colors.grey,
+          size: 65,
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          lifeStats(),
-          armorStats(),
-        ]),
+        Center(
+          child: Container(
+            height: 25,
+            width: 150,
+            color: const Color.fromARGB(130, 0, 0, 0),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  textStats(
+                    text: '666/999',
+                    icon: Icons.heart_broken,
+                    iconColor: Colors.red,
+                  ),
+                  textStats(
+                    text: '17',
+                    icon: Icons.shield,
+                    iconColor: Colors.grey,
+                  ),
+                ]),
+          ),
+        ),
       ]),
     );
   }
 
-  Row lifeStats() {
-    return const Row(children: [
+  Row textStats(
+      {required String text, required IconData icon, Color? iconColor}) {
+    return Row(children: [
       Icon(
-        Icons.heart_broken,
-        color: Colors.red,
-        size: 15,
+        icon,
+        color: iconColor ?? Colors.white,
+        size: 20,
       ),
-      SizedBox(width: 3),
+      const SizedBox(width: 3),
       Text(
-        '666/999',
-        style: TextStyle(
+        text,
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: 10,
-        ),
-      ),
-    ]);
-  }
-
-  Row armorStats() {
-    return const Row(children: [
-      Icon(
-        Icons.shield,
-        color: Colors.grey,
-        size: 15,
-      ),
-      SizedBox(width: 3),
-      Text(
-        '17',
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: 10,
+          fontSize: 12,
         ),
       ),
     ]);

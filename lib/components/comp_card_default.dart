@@ -4,12 +4,14 @@ class CompCardDefault extends StatelessWidget {
   final IconData? icon;
   final String title;
   final String subtitle;
+  final VoidCallback? onPressed;
 
   const CompCardDefault({
     Key? key,
     this.icon,
     required this.title,
     required this.subtitle,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -33,15 +35,24 @@ class CompCardDefault extends StatelessWidget {
           ),
         ),
         title: Text(
-          title,
+          title.toUpperCase(),
           style: const TextStyle(
-            letterSpacing: 2,
-            wordSpacing: 3,
-            fontSize: 16,
+            fontSize: 12,
             fontWeight: FontWeight.bold,
           ),
         ),
-        subtitle: Text(subtitle),
+        subtitle: Text(
+          subtitle,
+          textAlign: TextAlign.justify,
+          style: TextStyle(fontSize: 10),
+        ),
+        trailing: Container(
+          constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),
+          child: TextButton(
+            onPressed: onPressed,
+            child: const Icon(Icons.delete, color: Colors.black),
+          ),
+        ),
       ),
     );
   }

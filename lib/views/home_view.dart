@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/views/Home/Character%20View/menu_character_view.dart';
-import 'package:rpg_keeper_hub/views/Home/Table%20View/menu_table_view.dart';
+import 'package:rpg_keeper_hub/views/home/character%20view/menu_character_view.dart';
+import 'package:rpg_keeper_hub/views/home/table%20view/menu_table_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -40,7 +40,7 @@ class HomeView extends StatelessWidget {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.recent_actors_rounded),
+                        Icon(Icons.account_box),
                         SizedBox(width: 10),
                         Text('Characters'),
                       ]),

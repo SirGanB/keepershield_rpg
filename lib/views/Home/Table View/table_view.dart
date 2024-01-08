@@ -10,11 +10,13 @@ class TableView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(),
-      body: Column(children: [
-        const SingleChildScrollView(
+      backgroundColor: Colors.grey[800],
+      body: const Column(children: [
+        SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
+              SizedBox(width: 5),
               CompCharacterPortrait(),
               CompCharacterPortrait(),
               CompCharacterPortrait(),
@@ -27,22 +29,13 @@ class TableView extends StatelessWidget {
             ],
           ),
         ),
-        Row(children: [
-          Expanded(
-            flex: 3,
-            child: Container(
-              height: 500,
-              color: Colors.green,
-            ),
-          ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              height: 500,
-              color: Colors.blue,
-            ),
-          ),
-        ]),
+        Expanded(
+            child: Center(
+                child: Text(
+          'Coming Soon',
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20),
+        ))),
       ]),
     );
   }
