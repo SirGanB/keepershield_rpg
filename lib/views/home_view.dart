@@ -17,13 +17,13 @@ class HomeView extends StatelessWidget {
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: const Text(
-            'RPG Keeper',
+            'KeeperShield RPG',
             style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           ),
           bottom: const TabBar(
               labelColor: Colors.white,
               unselectedLabelColor: Colors.grey,
-              indicatorColor: Colors.deepOrange,
+              indicatorColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: 2,
               tabs: [

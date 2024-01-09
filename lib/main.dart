@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MaterialApp(
-        title: 'RPG Keeper HUB',
+        title: 'KeeperShield RPG',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
           useMaterial3: true,
         ),
         home: const WelcomeView(),

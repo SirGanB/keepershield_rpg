@@ -6,8 +6,8 @@ class CompCharacterPortrait extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 5, 5, 5),
-      color: Colors.grey[700],
+      margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),
+      color: Colors.grey[800],
       height: 150,
       width: 150,
       child:

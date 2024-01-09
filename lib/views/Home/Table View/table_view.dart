@@ -11,22 +11,19 @@ class TableView extends StatelessWidget {
     return Scaffold(
       appBar: appbar(),
       backgroundColor: Colors.grey[800],
-      body: const Column(children: [
+      body: Column(children: [
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              SizedBox(width: 5),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-              CompCharacterPortrait(),
-            ],
+          child: Container(
+            color: Colors.grey,
+            child: Row(
+              children: [
+                SizedBox(width: 8),
+                CompCharacterPortrait(),
+                CompCharacterPortrait(),
+                CompCharacterPortrait(),
+              ],
+            ),
           ),
         ),
         Expanded(
@@ -41,11 +38,11 @@ class TableView extends StatelessWidget {
   }
 
   AppBar appbar() => AppBar(
-        iconTheme: IconThemeData(color: Colors.grey[300]),
+        iconTheme: IconThemeData(color: Colors.grey),
         title: Text(
           table.title.toUpperCase(),
           style: const TextStyle(
-            color: Colors.white,
+            color: Colors.grey,
             fontWeight: FontWeight.bold,
           ),
         ),
