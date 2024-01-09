@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/components/comp_btn_default.dart';
-import 'package:rpg_keeper_hub/utils/controller.dart';
-import 'package:rpg_keeper_hub/views/home_view.dart';
+import 'package:keepershield_rpg/components/comp_btn_default.dart';
+import 'package:keepershield_rpg/utils/controller.dart';
+import 'package:keepershield_rpg/views/home_view.dart';
 
 class WelcomeView extends StatefulWidget {
   const WelcomeView({super.key, collWelcomeMsg});

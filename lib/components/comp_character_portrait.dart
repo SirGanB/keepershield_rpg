@@ -18,12 +18,12 @@ class CompCharacterPortrait extends StatelessWidget {
           color: const Color.fromARGB(130, 0, 0, 0),
           child: Center(
             child: Text(
-              'Character Name'.toUpperCase(),
+              'Mallaggor Skashraii'.toUpperCase(),
               textAlign: TextAlign.center,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 12,
+                fontSize: 10,
               ),
             ),
           ),
@@ -51,6 +51,11 @@ class CompCharacterPortrait extends StatelessWidget {
                     icon: Icons.shield,
                     iconColor: Colors.grey,
                   ),
+                  textStats(
+                    text: '12',
+                    icon: Icons.remove_red_eye,
+                    iconColor: Colors.purple,
+                  ),
                 ]),
           ),
         ),
@@ -64,7 +69,7 @@ class CompCharacterPortrait extends StatelessWidget {
       Icon(
         icon,
         color: iconColor ?? Colors.white,
-        size: 20,
+        size: 15,
       ),
       const SizedBox(width: 3),
       Text(
@@ -72,7 +77,7 @@ class CompCharacterPortrait extends StatelessWidget {
         style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: 12,
+          fontSize: 10,
         ),
       ),
     ]);

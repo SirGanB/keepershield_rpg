@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'dart:convert' show json;
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/components/comp_card_default.dart';
-import 'package:rpg_keeper_hub/models/rpg_table.dart';
-import 'package:rpg_keeper_hub/views/home/table%20view/table_view.dart';
+import 'package:keepershield_rpg/components/comp_card_default.dart';
+import 'package:keepershield_rpg/models/rpg_table.dart';
+import 'package:keepershield_rpg/views/home/table%20view/table_view.dart';
 import 'package:path_provider/path_provider.dart';
 
 class MenuTableView extends StatefulWidget {
@@ -21,10 +21,10 @@ class _MenuTableViewState extends State<MenuTableView> {
   @override
   void initState() {
     super.initState();
-    _carregarMesas();
+    _loadTableFromJson();
   }
 
-  Future<void> _carregarMesas() async {
+  Future<void> _loadTableFromJson() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = '${documentsDirectory.path}/data.json';
 
@@ -57,7 +57,7 @@ class _MenuTableViewState extends State<MenuTableView> {
 
   @override
   Widget build(BuildContext context) {
-    void excluirMesa(String titulo) {
+    void deleteTable(String titulo) {
       setState(() {
         // Encontrar o índice do item a ser excluído
         int index = collTables.indexWhere((table) => table.title == titulo);
@@ -68,7 +68,7 @@ class _MenuTableViewState extends State<MenuTableView> {
           collTables.removeAt(index);
 
           // Salvar as alterações no arquivo JSON
-          _salvarMesasNoJson();
+          _saveTableToJson();
         }
       });
     }
@@ -90,7 +90,7 @@ class _MenuTableViewState extends State<MenuTableView> {
             child: CompCardDefault(
               title: table.title,
               subtitle: table.subtitle,
-              onPressed: () => excluirMesa(table.title),
+              onPressed: () => deleteTable(table.title),
             ),
           ),
       ]),
@@ -101,29 +101,29 @@ class _MenuTableViewState extends State<MenuTableView> {
     return FloatingActionButton(
       backgroundColor: Colors.grey[900],
       onPressed: () {
-        _exibirPopupAdicaoMesa(context);
+        _showPopupAddTable(context);
       },
       child: const Icon(Icons.add, color: Colors.grey),
     );
   }
 
-  void _exibirPopupAdicaoMesa(BuildContext context) {
+  void _showPopupAddTable(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-            title: Text('Adicionar Mesa'),
+            title: const Text('Adicionar Mesa'),
             content: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: 200),
+              constraints: const BoxConstraints(maxHeight: 200),
               child: Column(children: [
                 TextField(
-                  maxLength: 30,
-                  decoration: InputDecoration(labelText: 'Nome da Mesa'),
+                  maxLength: 20,
+                  decoration: const InputDecoration(labelText: 'Nome da Mesa'),
                   controller: _tituloController,
                 ),
                 TextField(
-                  maxLength: 60,
-                  decoration: InputDecoration(labelText: 'Descrição'),
+                  maxLength: 40,
+                  decoration: const InputDecoration(labelText: 'Descrição'),
                   controller: _subtituloController,
                 ),
               ]),
@@ -131,11 +131,11 @@ class _MenuTableViewState extends State<MenuTableView> {
             actions: [
               ElevatedButton(
                 onPressed: () {
-                  _adicionarMesa();
+                  _addTable();
                   Navigator.of(context).pop();
                   _limparCamposTexto();
                 },
-                child: Text('Adicionar'),
+                child: const Text('Adicionar'),
               ),
             ]);
       },
@@ -143,7 +143,7 @@ class _MenuTableViewState extends State<MenuTableView> {
   }
 
   // Função para adicionar a nova mesa ao JSON
-  void _adicionarMesa() {
+  void _addTable() {
     setState(() {
       // Obter valores dos controladores
       String novoTitulo = _tituloController.text;
@@ -154,7 +154,7 @@ class _MenuTableViewState extends State<MenuTableView> {
         collTables.add(RpgTable(title: novoTitulo, subtitle: novoSubtitulo));
 
         // Salvar as alterações no JSON
-        _salvarMesasNoJson();
+        _saveTableToJson();
       } else {
         _limparCamposTexto();
       }
@@ -162,7 +162,7 @@ class _MenuTableViewState extends State<MenuTableView> {
   }
 
   // Função para salvar as mesas no JSON
-  void _salvarMesasNoJson() async {
+  void _saveTableToJson() async {
     // Obter o diretório de documentos do aplicativo
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = '${documentsDirectory.path}/data.json';

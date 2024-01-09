@@ -37,14 +37,14 @@ class CompCardDefault extends StatelessWidget {
         title: Text(
           title.toUpperCase(),
           style: const TextStyle(
-            fontSize: 12,
+            fontSize: 10,
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           subtitle,
           textAlign: TextAlign.justify,
-          style: TextStyle(fontSize: 10),
+          style: const TextStyle(fontSize: 10),
         ),
         trailing: Container(
           constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),

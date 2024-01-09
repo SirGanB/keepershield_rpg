@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/views/home/character%20view/menu_character_view.dart';
-import 'package:rpg_keeper_hub/views/home/table%20view/menu_table_view.dart';
+import 'package:keepershield_rpg/views/home/character%20view/menu_character_view.dart';
+import 'package:keepershield_rpg/views/home/table%20view/menu_table_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

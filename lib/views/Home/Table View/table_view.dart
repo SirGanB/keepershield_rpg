@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/components/comp_character_portrait.dart';
-import 'package:rpg_keeper_hub/models/rpg_table.dart';
+import 'package:keepershield_rpg/components/comp_character_portrait.dart';
+import 'package:keepershield_rpg/models/rpg_table.dart';
 
 class TableView extends StatelessWidget {
   final RpgTable table;

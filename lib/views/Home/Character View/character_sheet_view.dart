@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/components/character_sheet_comp/comp_label_ability_scores.dart';
-import 'package:rpg_keeper_hub/components/character_sheet_comp/comp_label_armory.dart';
-import 'package:rpg_keeper_hub/components/character_sheet_comp/comp_label_save_throw.dart';
-import 'package:rpg_keeper_hub/models/Weapon.dart';
-import 'package:rpg_keeper_hub/models/character.dart';
-import 'package:rpg_keeper_hub/models/damage.dart';
-import 'package:rpg_keeper_hub/models/definitions.dart';
-import 'package:rpg_keeper_hub/models/dice.dart';
+import 'package:keepershield_rpg/components/character_sheet_comp/comp_label_ability_scores.dart';
+import 'package:keepershield_rpg/components/character_sheet_comp/comp_label_armory.dart';
+import 'package:keepershield_rpg/components/character_sheet_comp/comp_label_save_throw.dart';
+import 'package:keepershield_rpg/models/Weapon.dart';
+import 'package:keepershield_rpg/models/character.dart';
+import 'package:keepershield_rpg/models/damage.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
+import 'package:keepershield_rpg/models/dice.dart';
 
 class CharacterSheetView extends StatefulWidget {
   final Character character;

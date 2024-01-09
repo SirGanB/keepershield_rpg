@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rpg_keeper_hub/models/ability_score.dart';
+import 'package:keepershield_rpg/models/ability_score.dart';
 
 class CompLabelAbilityScore extends StatefulWidget {
   const CompLabelAbilityScore({super.key});
