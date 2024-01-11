@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'views/welcome_view.dart';
+import 'package:keepershield_rpg/app/welcome_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +13,7 @@ class MyApp extends StatelessWidget {
     return SafeArea(
       child: MaterialApp(
         title: 'KeeperShield RPG',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
-          useMaterial3: true,
-        ),
+        theme: ThemeData(brightness: Brightness.light),
         home: const WelcomeView(),
       ),
     );
