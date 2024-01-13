@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/welcome_view.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:keepershield_rpg/app/views/my_app.dart';
+import 'package:keepershield_rpg/repository/_lib_repository.dart';
+import 'package:keepershield_rpg/services/auth.service.dart';
+import 'package:provider/provider.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: MaterialApp(
-        title: 'KeeperShield RPG',
-        theme: ThemeData(brightness: Brightness.light),
-        home: const WelcomeView(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => AuthService()),
+      ChangeNotifierProxyProvider<AuthService, TableRepository>(
+        create: (context) => TableRepository(
+          auth: context.read<AuthService>(),
+        ),
+        update: (_, authService, previousRepository) {
+          return TableRepository(auth: authService);
+        },
       ),
-    );
-  }
+    ],
+    child: const MyApp(),
+  ));
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/view/character_view/menu_character_view.dart';
-import 'package:keepershield_rpg/app/view/table_view/menu_table_view.dart';
+import 'package:keepershield_rpg/app/views/character_view/menu_character_view.dart';
+import 'package:keepershield_rpg/app/views/settings_view.dart';
+import 'package:keepershield_rpg/app/views/table_view/menu_table_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -13,7 +14,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -23,13 +24,15 @@ class _HomeViewState extends State<HomeView> {
               indicatorSize: TabBarIndicatorSize.tab,
               indicatorWeight: 2,
               tabs: [
-                Tab(child: Text('Mesas')),
-                Tab(child: Text('Personagens')),
+                Tab(child: Icon(Icons.groups)),
+                Tab(child: Icon(Icons.accessibility)),
+                Tab(child: Icon(Icons.settings)),
               ]),
         ),
-        body: TabBarView(children: [
+        body: const TabBarView(children: [
           MenuTableView(),
           CharacterView(),
+          SettingsView(),
         ]),
       ),
     );

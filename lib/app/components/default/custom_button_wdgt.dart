@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 
-class CustomButtonWdgt extends StatelessWidget {
-  final String title;
+class CustomButtonWdgt extends StatefulWidget {
+  final Widget child;
   final VoidCallback onPressed;
 
   const CustomButtonWdgt({
-    Key? key,
-    required this.title,
+    super.key,
     required this.onPressed,
-  }) : super(key: key);
+    required this.child,
+  });
 
+  @override
+  State<CustomButtonWdgt> createState() => _CustomButtonWdgtState();
+}
+
+class _CustomButtonWdgtState extends State<CustomButtonWdgt> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).colorScheme.primary,
+        borderRadius: BorderRadius.circular(8.0),
+        color: Theme.of(context).colorScheme.secondary,
       ),
       child: TextButton(
-        onPressed: onPressed,
+        onPressed: widget.onPressed,
         style: ElevatedButton.styleFrom(
-          fixedSize: const Size(250, 80),
+          fixedSize: const Size(240, 60),
         ),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.onPrimary,
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-          ),
-        ),
+        child: widget.child,
       ),
     );
   }

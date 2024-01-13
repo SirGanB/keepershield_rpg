@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "892414071263",
+    "project_id": "keepershield-rpg",
+    "storage_bucket": "keepershield-rpg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892414071263:android:dd4d99a25049ea4713b46a",
+        "android_client_info": {
+          "package_name": "com.example.rpg_keeper_hub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0RPU3TD0I8M_1ERnmDQB6qAa0ShqZd0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:892414071263:android:9f4f82d0a0f3f0da13b46a",
+        "android_client_info": {
+          "package_name": "devintiesaga.keepershield.rpg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0RPU3TD0I8M_1ERnmDQB6qAa0ShqZd0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/components/lib_components.dart';
+import 'package:keepershield_rpg/app/components/_lib_components.dart';
 import 'package:keepershield_rpg/model/lib_model.dart';
 
 class TableView extends StatelessWidget {

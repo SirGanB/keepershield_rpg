@@ -1,10 +1,7 @@
-// ... (Importações)
-
-// View (UI)
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/components/lib_components.dart';
-import 'package:keepershield_rpg/app/view/table_view/table_view.dart';
-import 'package:keepershield_rpg/view_model/menu_table_viewmodel.dart';
+import 'package:keepershield_rpg/app/components/_lib_components.dart';
+import 'package:keepershield_rpg/repository/table_repository.dart';
+import 'package:provider/provider.dart';
 
 class MenuTableView extends StatefulWidget {
   const MenuTableView({super.key});
@@ -14,52 +11,31 @@ class MenuTableView extends StatefulWidget {
 }
 
 class _MenuTableViewState extends State<MenuTableView> {
-  final MenuTableViewModel _viewModel = MenuTableViewModel();
+  late TableRepository tables;
   final TextEditingController _tituloController = TextEditingController();
   final TextEditingController _subtituloController = TextEditingController();
 
-  _MenuTableViewState() {
-    //_viewModel.loadTableFromJson();
-  }
-  @override
-  void initState() {
-    super.initState();
-    internalInitialize();
-  }
-
-  void internalInitialize() async {
-    print('internalInitialize');
-    await _viewModel.loadTableFromJson();
-    print('internalInitialize finalize');
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
+    tables = Provider.of<TableRepository>(context);
     return Scaffold(
       floatingActionButton: _floatingActionButton(context),
-      body: ListView(
-        children: [
-          for (final table in _viewModel.tables)
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => TableView(table: table),
-                  ),
-                );
-              },
-              child: CustomCardWdgt(
-                title: table.title,
-                subtitle: table.subtitle,
-                onPressed: () => setState(() {
-                  _viewModel.deleteTable(table.id);
-                }),
-              ),
-            ),
-        ],
-      ),
+      body: Consumer<TableRepository>(builder: (context, coll, w) {
+        return coll.tables.isEmpty
+            ? const Center(child: Text('Vazio'))
+            : ListView.builder(
+                itemCount: coll.tables.length,
+                itemBuilder: (_, i) {
+                  return CustomCardWdgt(
+                    title: coll.tables[i].title,
+                    subtitle: coll.tables[i].subtitle,
+                    onPressed: () => tables.delete(
+                      table: coll.tables[i],
+                    ),
+                  );
+                },
+              );
+      }),
     );
   }
 
@@ -97,24 +73,19 @@ class _MenuTableViewState extends State<MenuTableView> {
               actions: [
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      _addTableAndCloseDialog();
-                    });
+                    tables.create(
+                      title: _tituloController.text,
+                      subtitle: _subtituloController.text,
+                    );
+
+                    _tituloController.clear();
+                    _subtituloController.clear();
+
+                    Navigator.pop(context);
                   },
                   child: const Text('Adicionar'),
                 ),
               ]);
         });
-  }
-
-  void _addTableAndCloseDialog() {
-    _viewModel.addTable(
-      _tituloController.text,
-      _subtituloController.text,
-    );
-    Navigator.of(context).pop();
-    _tituloController.clear();
-    _subtituloController.clear();
-    _viewModel.loadTableFromJson();
   }
 }
