@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
-import 'package:keepershield_rpg/model/lib_model.dart';
+import 'package:keepershield_rpg/models/_lib_model.dart';
 
 class LabelAbilityScoreWdgt extends StatelessWidget {
   const LabelAbilityScoreWdgt({super.key});

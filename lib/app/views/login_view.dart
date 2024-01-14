@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
-import 'package:keepershield_rpg/repository/table_repository.dart';
+import 'package:keepershield_rpg/repository/tables_repository.dart';
 import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,7 @@ class _LoginViewState extends State<LoginView> {
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
-  late TableRepository tables;
+  late TablesRepository tables;
 
   bool isLogin = true;
   bool isLoading = false;
@@ -79,7 +79,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    tables = Provider.of<TableRepository>(context);
+    tables = Provider.of<TablesRepository>(context);
     return Scaffold(
       appBar: _buildAppbar(),
       body: SingleChildScrollView(

@@ -1,5 +1,5 @@
-import 'package:keepershield_rpg/model/models/dice_model.dart';
-import 'definitions.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
+import 'package:keepershield_rpg/models/dice_model.dart';
 
 class DamageModel {
   final int _qtdDices;

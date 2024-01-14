@@ -58,4 +58,6 @@ class AuthService extends ChangeNotifier {
     await _auth.signOut();
     _getUser();
   }
+
+  String defineId() => '${user!.uid}:${DateTime.now()}';
 }

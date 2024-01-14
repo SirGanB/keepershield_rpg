@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/_lib_components.dart';
-import 'package:keepershield_rpg/repository/table_repository.dart';
+import 'package:keepershield_rpg/app/views/table_view/table_view.dart';
+import 'package:keepershield_rpg/repository/tables_repository.dart';
 import 'package:provider/provider.dart';
 
 class MenuTableView extends StatefulWidget {
@@ -11,26 +12,37 @@ class MenuTableView extends StatefulWidget {
 }
 
 class _MenuTableViewState extends State<MenuTableView> {
-  late TableRepository tables;
+  late TablesRepository tables;
   final TextEditingController _tituloController = TextEditingController();
   final TextEditingController _subtituloController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    tables = Provider.of<TableRepository>(context);
+    tables = Provider.of<TablesRepository>(context);
     return Scaffold(
       floatingActionButton: _floatingActionButton(context),
-      body: Consumer<TableRepository>(builder: (context, coll, w) {
+      body: Consumer<TablesRepository>(builder: (context, coll, w) {
         return coll.tables.isEmpty
             ? const Center(child: Text('Vazio'))
             : ListView.builder(
                 itemCount: coll.tables.length,
                 itemBuilder: (_, i) {
-                  return CustomCardWdgt(
-                    title: coll.tables[i].title,
-                    subtitle: coll.tables[i].subtitle,
-                    onPressed: () => tables.delete(
-                      table: coll.tables[i],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              TableView(table: coll.tables[i]),
+                        ),
+                      );
+                    },
+                    child: CustomCardWdgt(
+                      title: coll.tables[i].title,
+                      subtitle: coll.tables[i].subtitle,
+                      onPressed: () => tables.delete(
+                        table: coll.tables[i],
+                      ),
                     ),
                   );
                 },

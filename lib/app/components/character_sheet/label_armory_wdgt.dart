@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/model/lib_model.dart';
+import 'package:keepershield_rpg/models/_lib_model.dart';
 
 class LabelArmoryWdgt extends StatelessWidget {
   final List<Weapon> collArmory;

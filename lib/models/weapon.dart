@@ -1,4 +1,5 @@
-import 'package:keepershield_rpg/model/lib_model.dart';
+import 'package:keepershield_rpg/models/damage_model.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
 
 class Weapon {
   final String _name;

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/_lib_components.dart';
-import 'package:keepershield_rpg/model/lib_model.dart';
+import 'package:keepershield_rpg/models/_lib_model.dart';
 
-class CharacterSheetView extends StatefulWidget {
+class CharacterView extends StatefulWidget {
   final CharacterModel character;
 
-  const CharacterSheetView({super.key, required this.character});
+  const CharacterView({super.key, required this.character});
 
   @override
-  State<CharacterSheetView> createState() => _CharacterSheetViewState();
+  State<CharacterView> createState() => _CharacterViewState();
 }
 
-class _CharacterSheetViewState extends State<CharacterSheetView> {
+class _CharacterViewState extends State<CharacterView> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -21,7 +21,7 @@ class _CharacterSheetViewState extends State<CharacterSheetView> {
         SizedBox(
           width: screenSize.width,
           child: Text(
-            widget.character.name.toUpperCase(),
+            '',
             textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: screenSize.height * 0.03,
@@ -39,11 +39,11 @@ class _CharacterSheetViewState extends State<CharacterSheetView> {
           ),
         ),
         Text(
-          'Classe: ${widget.character.classes}',
+          'Classe: ',
           style: const TextStyle(fontSize: 16),
         ),
         Text(
-          'Raça: ${widget.character.race}',
+          'Raça: ',
           style: const TextStyle(fontSize: 16),
         ),
         const LabelAbilityScoreWdgt(),

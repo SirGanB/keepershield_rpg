@@ -41,18 +41,18 @@ class CompCharacterPortrait extends StatelessWidget {
                 children: [
                   textStats(
                     text: '666/999',
-                    icon: Icons.heart_broken,
+                    icon: Icons.favorite,
                     iconColor: Colors.red,
                   ),
                   textStats(
                     text: '17',
                     icon: Icons.shield,
-                    iconColor: Colors.grey,
+                    iconColor: Colors.white,
                   ),
                   textStats(
                     text: '12',
                     icon: Icons.remove_red_eye,
-                    iconColor: Colors.purple,
+                    iconColor: Colors.amber,
                   ),
                 ]),
           ),

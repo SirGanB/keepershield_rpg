@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
         ),
         body: const TabBarView(children: [
           MenuTableView(),
-          CharacterView(),
+          MenuCharacterView(),
           SettingsView(),
         ]),
       ),

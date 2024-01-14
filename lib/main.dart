@@ -4,7 +4,7 @@ import 'package:keepershield_rpg/app/views/my_app.dart';
 import 'package:keepershield_rpg/repository/_lib_repository.dart';
 import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:provider/provider.dart';
-import 'firebase_options.dart';
+import 'database/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +14,20 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => AuthService()),
-      ChangeNotifierProxyProvider<AuthService, TableRepository>(
-        create: (context) => TableRepository(
+      ChangeNotifierProxyProvider<AuthService, TablesRepository>(
+        create: (context) => TablesRepository(
           auth: context.read<AuthService>(),
         ),
         update: (_, authService, previousRepository) {
-          return TableRepository(auth: authService);
+          return TablesRepository(auth: authService);
+        },
+      ),
+      ChangeNotifierProxyProvider<AuthService, CharactersRepository>(
+        create: (context) => CharactersRepository(
+          auth: context.read<AuthService>(),
+        ),
+        update: (_, authService, previousRepository) {
+          return CharactersRepository(auth: authService);
         },
       ),
     ],
