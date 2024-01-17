@@ -49,8 +49,9 @@ class LabelAbilityScores extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(5),
-                        bottomRight: Radius.circular(5)),
+                      bottomLeft: Radius.circular(5),
+                      bottomRight: Radius.circular(5),
+                    ),
                     color: Theme.of(context).colorScheme.background,
                     border: Border.all(
                         color: Theme.of(context).colorScheme.outline, width: 2),

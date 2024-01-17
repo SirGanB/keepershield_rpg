@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/character_sheet/label_ability_scores_wdgt.dart';
-import 'package:keepershield_rpg/app/components/character_sheet/label_saving_throw_wdgt.dart';
-import 'package:keepershield_rpg/app/components/character_sheet/proficiency_score_wdgt.dart';
+import 'package:keepershield_rpg/app/components/character_sheet/saving_throw_wdgt.dart';
+import 'package:keepershield_rpg/app/components/character_sheet/label_skill_proficiency_wdgt.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 
@@ -34,6 +34,7 @@ class _CharacterViewState extends State<CharacterView> {
                   if (_screenIndex == 0) _buildAtributeLabel(),
                   if (_screenIndex == 1) const Text('View 2'),
                   if (_screenIndex == 2) const Text('View 3'),
+                  if (_screenIndex == 3) const Text('View 4'),
                 ],
               ),
             ),
@@ -42,6 +43,8 @@ class _CharacterViewState extends State<CharacterView> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _screenIndex,
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.outline,
         onTap: (index) {
           setState(() {
             _screenIndex = index;
@@ -51,6 +54,10 @@ class _CharacterViewState extends State<CharacterView> {
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Atributos',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.new_releases),
+            label: 'Coming Soon',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.new_releases),
@@ -316,52 +323,52 @@ class _CharacterViewState extends State<CharacterView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildTitleProficiency(title: 'Força'),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.athleticsProficiency,
                       title: 'Atletismo',
-                      value: widget.character.strengthModifier,
+                      value: widget.character.athletics,
                     ),
                     _buildTitleProficiency(title: 'Destreza'),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.acrobaticsProficiency,
                       title: 'Acrobacia',
-                      value: widget.character.dexteryModifier,
+                      value: widget.character.acrobatics,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.stealthProficiency,
                       title: 'Furtividade',
-                      value: widget.character.dexteryModifier,
+                      value: widget.character.stealth,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.star,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.sleightOfHandProficiency,
                       title: 'Prestidigitação',
-                      value: widget.character.dexteryModifier,
+                      value: widget.character.sleightOfHand,
                     ),
                     _buildTitleProficiency(title: 'Inteligência'),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.arcanaProficiency,
                       title: 'Arcanismo',
-                      value: widget.character.intelligenceModifier,
+                      value: widget.character.arcana,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.historyProficiency,
                       title: 'História',
-                      value: widget.character.intelligenceModifier,
+                      value: widget.character.history,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.investigationProficiency,
                       title: 'Investigação',
-                      value: widget.character.intelligenceModifier,
+                      value: widget.character.investigation,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.natureProficiency,
                       title: 'Natureza',
-                      value: widget.character.intelligenceModifier,
+                      value: widget.character.nature,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.religionProficiency,
                       title: 'Religião',
-                      value: widget.character.intelligenceModifier,
+                      value: widget.character.religion,
                     ),
                   ],
                 ),
@@ -376,51 +383,51 @@ class _CharacterViewState extends State<CharacterView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     _buildTitleProficiency(title: 'Sabedoria'),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.insightProficiency,
                       title: 'Intuição',
-                      value: widget.character.wisdomModifier,
+                      value: widget.character.insight,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.animalHandlingProficiency,
                       title: 'Lidar com Animais',
-                      value: widget.character.wisdomModifier,
+                      value: widget.character.animalHandling,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.medicineProficiency,
                       title: 'Medicina',
-                      value: widget.character.wisdomModifier,
+                      value: widget.character.medicine,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.perceptionProficiency,
                       title: 'Percepção',
-                      value: widget.character.wisdomModifier,
+                      value: widget.character.perception,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.survivalProficiency,
                       title: 'Sobrevivência',
-                      value: widget.character.wisdomModifier,
+                      value: widget.character.survival,
                     ),
                     _buildTitleProficiency(title: 'Carisma'),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
-                      title: 'Religião',
-                      value: widget.character.charismaModifier,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.performanceProficiency,
+                      title: 'Atuação',
+                      value: widget.character.performance,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
-                      title: 'Religião',
-                      value: widget.character.charismaModifier,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.deceptionProficiency,
+                      title: 'Enganação',
+                      value: widget.character.deception,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
-                      title: 'Religião',
-                      value: widget.character.charismaModifier,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.intimidationProficiency,
+                      title: 'Intimidação',
+                      value: widget.character.intimidation,
                     ),
-                    ProficiencyScoreWdgt(
-                      icon: Icons.circle_outlined,
-                      title: 'Religião',
-                      value: widget.character.charismaModifier,
+                    SkillProficiencyWdgt(
+                      proficiency: widget.character.persuasionProficiency,
+                      title: 'Persuasão',
+                      value: widget.character.persuasion,
                     ),
                   ],
                 ),

@@ -6,6 +6,7 @@ class CharacterModel {
   final int healthPoints;
   final List<Map<String, int>> abilityScores;
   final List<Map<String, bool>> savingThrows;
+  final List<Map<String, int>> skills;
   final int speed;
 
   CharacterModel({
@@ -17,6 +18,7 @@ class CharacterModel {
     required this.abilityScores,
     required this.savingThrows,
     required this.speed,
+    required this.skills,
   });
 
   String getClasses() {

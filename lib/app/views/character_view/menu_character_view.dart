@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/_lib_components.dart';
-import 'package:keepershield_rpg/app/components/character_sheet/stats_btn_wdgt.dart';
+import 'package:keepershield_rpg/app/components/character_sheet/label_atribute_wdgt.dart';
 import 'package:keepershield_rpg/app/views/character_view/character_view.dart';
 import 'package:keepershield_rpg/models/_lib_model.dart';
 import 'package:keepershield_rpg/repository/characters_repository.dart';
@@ -161,19 +161,16 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          StatsBtnWdgt(
+                          LabelAtributeWdgt(
                             controller: _strController,
-                            enabled: true,
                             title: 'For',
                           ),
-                          StatsBtnWdgt(
+                          LabelAtributeWdgt(
                             controller: _dexController,
-                            enabled: true,
                             title: 'Des',
                           ),
-                          StatsBtnWdgt(
+                          LabelAtributeWdgt(
                             controller: _conController,
-                            enabled: true,
                             title: 'Con',
                           ),
                         ],
@@ -184,19 +181,16 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          StatsBtnWdgt(
+                          LabelAtributeWdgt(
                             controller: _intController,
-                            enabled: true,
                             title: 'Int',
                           ),
-                          StatsBtnWdgt(
+                          LabelAtributeWdgt(
                             controller: _wisController,
-                            enabled: true,
                             title: 'Sab',
                           ),
-                          StatsBtnWdgt(
+                          LabelAtributeWdgt(
                             controller: _chaController,
-                            enabled: true,
                             title: 'Car',
                           ),
                         ],
@@ -339,20 +333,40 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
       ],
       healthPoints: 0,
       abilityScores: [
-        {'For': int.parse(_strController.text)},
-        {'Des': int.parse(_dexController.text)},
-        {'Con': int.parse(_conController.text)},
-        {'Int': int.parse(_intController.text)},
-        {'Sab': int.parse(_wisController.text)},
-        {'Car': int.parse(_chaController.text)},
+        {'Strenght': int.parse(_strController.text)},
+        {'Dexterity': int.parse(_dexController.text)},
+        {'Constitution': int.parse(_conController.text)},
+        {'Intelligence': int.parse(_intController.text)},
+        {'Wisdom': int.parse(_wisController.text)},
+        {'Charisma': int.parse(_chaController.text)},
       ],
       savingThrows: [
-        {'For': false},
-        {'Des': false},
-        {'Con': false},
-        {'Int': false},
-        {'Sab': false},
-        {'Car': false},
+        {'Strenght': false},
+        {'Dexterity': false},
+        {'Constitution': false},
+        {'Intelligence': false},
+        {'Wisdom': false},
+        {'Charisma': false},
+      ],
+      skills: [
+        {'Athletics': 0},
+        {'Acrobatics': 0},
+        {'Stealth': 0},
+        {'Sleight of Hand': 0},
+        {'Arcana': 0},
+        {'History': 0},
+        {'Investigation': 0},
+        {'Nature': 0},
+        {'Religion': 0},
+        {'Insight': 0},
+        {'Animal Handling': 0},
+        {'Medicine': 0},
+        {'Perception': 0},
+        {'Survival': 0},
+        {'Performance': 0},
+        {'Deception': 0},
+        {'Intimidation': 0},
+        {'Persuasion': 0},
       ],
       speed: 9,
     );

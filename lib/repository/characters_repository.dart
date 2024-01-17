@@ -53,7 +53,12 @@ class CharactersRepository extends ChangeNotifier {
                       Map<String, bool>.from(item as Map<String, dynamic>))
                   .toList() ??
               [],
-          speed: doc.get('speed') ?? 0,
+          speed: doc.get('speed'),
+          skills: (doc.get('skills') as List<dynamic>?)
+                  ?.map((item) =>
+                      Map<String, int>.from(item as Map<String, dynamic>))
+                  .toList() ??
+              [],
         );
 
         _characters.add(character);
@@ -79,6 +84,7 @@ class CharactersRepository extends ChangeNotifier {
       'abilityScores': character.abilityScores,
       'savingThrows': character.savingThrows,
       'speed': character.speed,
+      'skills': character.skills,
     });
 
     _characters.add(character);
