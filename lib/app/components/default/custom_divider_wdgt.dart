@@ -28,7 +28,7 @@ class CustomDividerWdgt extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 25),
         child: Container(
           height: 2,
-          color: Theme.of(context).colorScheme.onSurface,
+          color: Theme.of(context).colorScheme.outline,
         ),
       ),
     );

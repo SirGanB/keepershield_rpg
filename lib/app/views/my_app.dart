@@ -9,8 +9,9 @@ class MyApp extends StatelessWidget {
     return SafeArea(
       child: MaterialApp(
         title: 'KeeperShield RPG',
-        theme: ThemeData(brightness: Brightness.light),
+        theme: ThemeData.dark(),
         home: const AuthCheckView(),
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

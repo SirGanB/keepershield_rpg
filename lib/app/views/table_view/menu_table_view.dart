@@ -19,8 +19,8 @@ class _MenuTableViewState extends State<MenuTableView> {
   @override
   Widget build(BuildContext context) {
     tables = Provider.of<TablesRepository>(context);
+
     return Scaffold(
-      floatingActionButton: _floatingActionButton(context),
       body: Consumer<TablesRepository>(builder: (context, coll, w) {
         return coll.tables.isEmpty
             ? const Center(child: Text('Vazio'))
@@ -48,6 +48,7 @@ class _MenuTableViewState extends State<MenuTableView> {
                 },
               );
       }),
+      floatingActionButton: _floatingActionButton(context),
     );
   }
 

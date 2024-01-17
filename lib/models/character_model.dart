@@ -2,10 +2,11 @@ class CharacterModel {
   final String id;
   final String name;
   final String race;
-  final List<Map<String, dynamic>> classes;
+  final List<Map<String, int>> classes;
   final int healthPoints;
-  final List<int> abilityScores;
-  final List<bool> savingThrows;
+  final List<Map<String, int>> abilityScores;
+  final List<Map<String, bool>> savingThrows;
+  final int speed;
 
   CharacterModel({
     required this.id,
@@ -15,19 +16,18 @@ class CharacterModel {
     required this.healthPoints,
     required this.abilityScores,
     required this.savingThrows,
+    required this.speed,
   });
 
   String getClasses() {
     int totalLevel = 0;
 
     for (var e in classes) {
-      if (e.containsKey('level')) {
-        totalLevel += e['level'] as int;
-      }
+      totalLevel += e.values.first;
     }
 
     return classes.length == 1
-        ? '${classes.first['class']}, nível: $totalLevel'
+        ? '${classes.first.keys.first} lvl: $totalLevel'
         : 'Multiclasse, nível: $totalLevel';
   }
 }

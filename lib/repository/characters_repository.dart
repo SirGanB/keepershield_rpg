@@ -34,40 +34,39 @@ class CharactersRepository extends ChangeNotifier {
 
       for (var doc in snapshot.docs) {
         CharacterModel character = CharacterModel(
-          id: doc.get('id'),
-          name: doc.get('name'),
-          race: doc.get('race'),
-          classes: (doc.get('classes') as List<dynamic>)
-              .cast<Map<String, dynamic>>(),
-          healthPoints: doc.get('healthPoints'),
-          abilityScores:
-              (doc.get('abilityScores') as List<dynamic>).cast<int>(),
-          savingThrows: (doc.get('savingThrows') as List<dynamic>).cast<bool>(),
+          id: doc.get('id') ?? '',
+          name: doc.get('name') ?? '',
+          race: doc.get('race') ?? '',
+          classes: (doc.get('classes') as List<dynamic>?)
+                  ?.map((item) =>
+                      Map<String, int>.from(item as Map<String, dynamic>))
+                  .toList() ??
+              [],
+          healthPoints: doc.get('healthPoints') ?? 0,
+          abilityScores: (doc.get('abilityScores') as List<dynamic>?)
+                  ?.map((item) =>
+                      Map<String, int>.from(item as Map<String, dynamic>))
+                  .toList() ??
+              [],
+          savingThrows: (doc.get('savingThrows') as List<dynamic>?)
+                  ?.map((item) =>
+                      Map<String, bool>.from(item as Map<String, dynamic>))
+                  .toList() ??
+              [],
+          speed: doc.get('speed') ?? 0,
         );
 
         _characters.add(character);
-      }
 
-      notifyListeners();
+        notifyListeners();
+      }
     }
   }
 
   UnmodifiableListView<CharacterModel> get characters =>
       UnmodifiableListView(_characters);
 
-  create({required String name}) async {
-    var character = CharacterModel(
-      id: auth.defineId(),
-      name: name,
-      race: '',
-      classes: [
-        {'class': '', 'level': 1},
-      ],
-      healthPoints: 10,
-      abilityScores: [15, 14, 13, 12, 10, 8],
-      savingThrows: [false, false, false, false, false, false],
-    );
-
+  create({required CharacterModel character}) async {
     await db
         .collection('users/${auth.user!.uid}/characters')
         .doc(character.id)
@@ -79,7 +78,10 @@ class CharactersRepository extends ChangeNotifier {
       'healthPoints': character.healthPoints,
       'abilityScores': character.abilityScores,
       'savingThrows': character.savingThrows,
+      'speed': character.speed,
     });
+
+    _characters.add(character);
 
     notifyListeners();
   }

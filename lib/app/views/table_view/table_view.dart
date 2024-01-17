@@ -10,17 +10,20 @@ class TableView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(),
-      body: const Column(children: [
+      body: Column(children: [
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(children: [
-            SizedBox(width: 8),
-            CompCharacterPortrait(),
-            CompCharacterPortrait(),
-            CompCharacterPortrait(),
-          ]),
+          child: Container(
+            color: Theme.of(context).colorScheme.secondary,
+            child: const Row(children: [
+              SizedBox(width: 8),
+              CompCharacterPortrait(),
+              CompCharacterPortrait(),
+              CompCharacterPortrait(),
+            ]),
+          ),
         ),
-        Expanded(
+        const Expanded(
           child: Center(
             child: Text(
               'Coming Soon',
@@ -33,15 +36,12 @@ class TableView extends StatelessWidget {
   }
 
   AppBar appbar() => AppBar(
-        iconTheme: const IconThemeData(color: Colors.grey),
         title: Text(
           table.title.toUpperCase(),
           style: const TextStyle(
-            color: Colors.grey,
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: Colors.grey[900],
         centerTitle: true,
       );
 }

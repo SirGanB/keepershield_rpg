@@ -11,26 +11,28 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context) => AuthService()),
-      ChangeNotifierProxyProvider<AuthService, TablesRepository>(
-        create: (context) => TablesRepository(
-          auth: context.read<AuthService>(),
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthService()),
+        ChangeNotifierProxyProvider<AuthService, TablesRepository>(
+          create: (context) => TablesRepository(
+            auth: context.read<AuthService>(),
+          ),
+          update: (_, authService, previousRepository) {
+            return TablesRepository(auth: authService);
+          },
         ),
-        update: (_, authService, previousRepository) {
-          return TablesRepository(auth: authService);
-        },
-      ),
-      ChangeNotifierProxyProvider<AuthService, CharactersRepository>(
-        create: (context) => CharactersRepository(
-          auth: context.read<AuthService>(),
+        ChangeNotifierProxyProvider<AuthService, CharactersRepository>(
+          create: (context) => CharactersRepository(
+            auth: context.read<AuthService>(),
+          ),
+          update: (_, authService, previousRepository) {
+            return CharactersRepository(auth: authService);
+          },
         ),
-        update: (_, authService, previousRepository) {
-          return CharactersRepository(auth: authService);
-        },
-      ),
-    ],
-    child: const MyApp(),
-  ));
+      ],
+      child: const MyApp(),
+    ),
+  );
 }

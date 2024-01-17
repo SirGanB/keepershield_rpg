@@ -81,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     tables = Provider.of<TablesRepository>(context);
     return Scaffold(
-      appBar: _buildAppbar(),
+      appBar: _buildAppbar(context),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Form(
@@ -114,8 +114,11 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 
-  AppBar _buildAppbar() => AppBar(
-        title: const Text('KeeperShield RPG'),
+  AppBar _buildAppbar(BuildContext context) => AppBar(
+        title: Text(
+          'KeeperShield RPG',
+          style: TextStyle(color: Theme.of(context).colorScheme.onPrimary),
+        ),
         centerTitle: true,
       );
 
@@ -209,7 +212,7 @@ class _LoginViewState extends State<LoginView> {
       child: Container(
         width: 250,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: TextButton(
@@ -230,7 +233,7 @@ class _LoginViewState extends State<LoginView> {
                       height: 12,
                       width: 12,
                       child: CircularProgressIndicator(
-                        color: Theme.of(context).colorScheme.onSecondary,
+                        color: Theme.of(context).colorScheme.onPrimary,
                       ),
                     ),
                   )
@@ -238,7 +241,7 @@ class _LoginViewState extends State<LoginView> {
                     child: Text(
                       actionButton.toUpperCase(),
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSecondary,
+                        color: Theme.of(context).colorScheme.onPrimary,
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                       ),

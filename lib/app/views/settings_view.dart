@@ -49,7 +49,7 @@ class _SettingsViewState extends State<SettingsView> {
           child: Text(
             text.toUpperCase(),
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onSecondary,
+              color: Theme.of(context).colorScheme.onTertiary,
             ),
           ),
         ),

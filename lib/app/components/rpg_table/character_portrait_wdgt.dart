@@ -6,7 +6,10 @@ class CompCharacterPortrait extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all()),
+      decoration: BoxDecoration(
+        border: Border.all(),
+        color: Theme.of(context).colorScheme.background,
+      ),
       margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),
       height: 150,
       width: 150,
@@ -40,16 +43,19 @@ class CompCharacterPortrait extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   textStats(
+                    context,
                     text: '666/999',
                     icon: Icons.favorite,
                     iconColor: Colors.red,
                   ),
                   textStats(
+                    context,
                     text: '17',
                     icon: Icons.shield,
                     iconColor: Colors.white,
                   ),
                   textStats(
+                    context,
                     text: '12',
                     icon: Icons.remove_red_eye,
                     iconColor: Colors.amber,
@@ -61,12 +67,12 @@ class CompCharacterPortrait extends StatelessWidget {
     );
   }
 
-  Row textStats(
+  Row textStats(context,
       {required String text, required IconData icon, Color? iconColor}) {
     return Row(children: [
       Icon(
         icon,
-        color: iconColor ?? Colors.white,
+        color: iconColor ?? Theme.of(context).colorScheme.primary,
         size: 15,
       ),
       const SizedBox(width: 3),

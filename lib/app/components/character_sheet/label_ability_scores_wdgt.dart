@@ -1,52 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
-import 'package:keepershield_rpg/models/_lib_model.dart';
 
-class LabelAbilityScoreWdgt extends StatelessWidget {
-  const LabelAbilityScoreWdgt({super.key});
+class LabelAbilityScores extends StatelessWidget {
+  final String title;
+  final int modifier;
+  final int score;
+  const LabelAbilityScores({
+    super.key,
+    required this.title,
+    required this.modifier,
+    required this.score,
+  });
 
   @override
   Widget build(BuildContext context) {
-    List<AbilityScoreModel> abilityScores = [
-      AbilityScoreModel(name: 'FOR', value: 15),
-      AbilityScoreModel(name: 'DES', value: 14),
-      AbilityScoreModel(name: 'CON', value: 13),
-      AbilityScoreModel(name: 'INT', value: 12),
-      AbilityScoreModel(name: 'SAB', value: 10),
-      AbilityScoreModel(name: 'CAR', value: 08),
-    ];
-
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      const CustomDividerWdgt(title: 'Pontos de Atributos'),
-      SizedBox(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 2,
-            crossAxisCount: 3,
-          ),
-          itemBuilder: (context, index) {
-            return buildAbilityScoreLabel(abilityScores, index);
-          },
-          itemCount: abilityScores.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-        ),
-      ),
-    ]);
-  }
-
-  Widget buildAbilityScoreLabel(
-      List<AbilityScoreModel> abilityScores, int index) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(
-          abilityScores[index].name.toUpperCase(),
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-        ),
-        Text(
-          '${abilityScores[index].value} (${abilityScores[index].modifier})',
-          style: const TextStyle(fontSize: 12),
+        Stack(
+          children: [
+            // Main Square
+            Container(
+              padding: const EdgeInsets.only(top: 5),
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  width: 2,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Center(
+                child: Text(
+                  modifier > 0 ? '+$modifier' : '$modifier',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ),
+
+            // Title
+            SizedBox(
+              width: 100,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(5),
+                        bottomRight: Radius.circular(5)),
+                    color: Theme.of(context).colorScheme.background,
+                    border: Border.all(
+                        color: Theme.of(context).colorScheme.outline, width: 2),
+                  ),
+                  height: 25,
+                  child: Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Text(
+                      title.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 8),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            //Bottom Retangle
+            SizedBox(
+              height: 110,
+              width: 100,
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  height: 30,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Theme.of(context).colorScheme.background,
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      strokeAlign: 0.5,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '$score',
+                      style: const TextStyle(fontSize: 10),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
