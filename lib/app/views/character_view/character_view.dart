@@ -308,8 +308,8 @@ class _CharacterViewState extends State<CharacterView> {
           ),
 
           const CustomDividerWdgt(title: 'Perícias'),
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
+          SizedBox(
+            height: 415,
             child: Row(children: [
               Expanded(
                 child: Column(
