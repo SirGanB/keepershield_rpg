@@ -38,11 +38,11 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
     characters = Provider.of<CharactersRepository>(context);
 
     return Scaffold(
-      body: Consumer<CharactersRepository>(builder: (context, coll, w) {
-        return coll.characters.isEmpty
+      body: Consumer<CharactersRepository>(builder: (context, repository, w) {
+        return repository.characters.isEmpty
             ? const Center(child: Text('Vazio'))
             : ListView.builder(
-                itemCount: coll.characters.length,
+                itemCount: repository.characters.length,
                 itemBuilder: (_, i) {
                   return GestureDetector(
                     onTap: () {
@@ -51,15 +51,16 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
                         MaterialPageRoute(
                           builder: (context) => CharacterView(
                             character: CharacterViewModel(
-                                character: coll.characters[i]),
+                                character: repository.characters[i]),
                           ),
                         ),
                       );
                     },
                     child: CustomCardWdgt(
-                      title: coll.characters[i].name,
-                      subtitle: coll.characters[i].getClasses(),
-                      onPressed: () => characters.delete(coll.characters[i]),
+                      title: repository.characters[i].name,
+                      subtitle: repository.characters[i].getClasses(),
+                      onPressed: () =>
+                          characters.delete(repository.characters[i]),
                     ),
                   );
                 },

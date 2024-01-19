@@ -102,4 +102,26 @@ class CharactersRepository extends ChangeNotifier {
 
     notifyListeners();
   }
+
+  updateSkill(CharacterModel character, String skill, int newValue) async {
+    int index = _characters.indexWhere((c) => c.id == character.id);
+
+    if (index != -1) {
+      for (int i = 0; i < _characters[index].skills.length; i++) {
+        if (_characters[index].skills[i].containsKey(skill)) {
+          _characters[index].skills[i][skill] = newValue;
+          break;
+        }
+      }
+    }
+
+    await db
+        .collection('users/${auth.user!.uid}/characters')
+        .doc(character.id)
+        .update({
+      'skills': character.skills,
+    });
+
+    notifyListeners();
+  }
 }

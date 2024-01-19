@@ -1,7 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/models/_lib_model.dart';
+import 'package:keepershield_rpg/repository/characters_repository.dart';
+import 'package:provider/provider.dart';
 
 class CharacterViewModel {
   final CharacterModel _character;
+  late CharactersRepository _charactersRepository;
 
   // Ability Scores
   late int strength;
@@ -98,9 +102,18 @@ class CharacterViewModel {
     charismaModifier = _defineModifier(charisma);
 
     proficiencyBonus = _defineProcifiencyBonus();
-
     _defineSavingThrow();
     _defineSkills();
+  }
+
+  updateSkill({
+    required BuildContext context,
+    required String skill,
+    required int value,
+  }) {
+    _charactersRepository =
+        Provider.of<CharactersRepository>(context, listen: false);
+    _charactersRepository.updateSkill(_character, skill, value);
   }
 
   String get name => _character.name;
