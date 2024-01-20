@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AuthException extends ChangeNotifier implements Exception {
   final String message;
@@ -59,5 +60,14 @@ class AuthService extends ChangeNotifier {
     _getUser();
   }
 
-  String defineId() => '${user!.uid}:${DateTime.now()}';
+  String defineId() {
+    String string = '';
+
+    var now = DateTime.now();
+    var formattedDate = DateFormat('yyyyMMddHHmmss').format(now);
+
+    string = 'u:${user!.uid}d:$formattedDate';
+
+    return string;
+  }
 }

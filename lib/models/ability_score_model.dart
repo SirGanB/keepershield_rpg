@@ -1,12 +1,8 @@
 class AbilityScoreModel {
-  final String _name;
-  final int _value;
+  final int value;
+  final bool isProfiency;
 
-  AbilityScoreModel({required String name, required int value})
-      : _name = name,
-        _value = value;
+  AbilityScoreModel({required this.value, required this.isProfiency});
 
-  String get name => _name;
-  int get value => _value;
-  int get modifier => (_value - 10) ~/ 2;
+  int get modifier => (value - 10) ~/ 2;
 }

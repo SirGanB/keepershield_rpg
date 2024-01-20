@@ -35,8 +35,6 @@ class _CharacterViewState extends State<CharacterView> {
                   children: [
                     if (_screenIndex == 0) _buildAtributeLabel(),
                     if (_screenIndex == 1) const Text('View 2'),
-                    if (_screenIndex == 2) const Text('View 3'),
-                    if (_screenIndex == 3) const Text('View 4'),
                   ],
                 ),
               ),
@@ -56,14 +54,6 @@ class _CharacterViewState extends State<CharacterView> {
             BottomNavigationBarItem(
               icon: Icon(Icons.list),
               label: 'Atributos',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.new_releases),
-              label: 'Coming Soon',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.new_releases),
-              label: 'Coming Soon',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.new_releases),
@@ -99,12 +89,12 @@ class _CharacterViewState extends State<CharacterView> {
                     _buildProperty(
                       icon: Icons.shield,
                       title: 'Classe de Armadura',
-                      text: '${widget.character.dexteryModifier + 10}',
+                      text: '',
                     ),
                     _buildProperty(
                       icon: Icons.remove_red_eye,
                       title: 'Percepção Passiva',
-                      text: '${widget.character.perception + 10}',
+                      text: '',
                     ),
                   ],
                 ),

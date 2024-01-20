@@ -23,18 +23,18 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
           children: [
             LabelAbilityScores(
               title: 'Força',
-              modifier: widget.character.strengthModifier,
-              score: widget.character.strength,
+              modifier: widget.character.atributes[0].modifier,
+              score: widget.character.atributes[0].value,
             ),
             LabelAbilityScores(
               title: 'Destreza',
-              modifier: widget.character.dexteryModifier,
-              score: widget.character.dextery,
+              modifier: widget.character.atributes[1].modifier,
+              score: widget.character.atributes[1].value,
             ),
             LabelAbilityScores(
               title: 'Constituição',
-              modifier: widget.character.constitutionModifier,
-              score: widget.character.constitution,
+              modifier: widget.character.atributes[2].modifier,
+              score: widget.character.atributes[2].value,
             ),
           ],
         ),
@@ -44,18 +44,18 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
         children: [
           LabelAbilityScores(
             title: 'Inteligência',
-            modifier: widget.character.intelligenceModifier,
-            score: widget.character.intelligence,
+            modifier: widget.character.atributes[3].modifier,
+            score: widget.character.atributes[3].value,
           ),
           LabelAbilityScores(
             title: 'Sabedoria',
-            modifier: widget.character.wisdomModifier,
-            score: widget.character.wisdom,
+            modifier: widget.character.atributes[4].modifier,
+            score: widget.character.atributes[4].value,
           ),
           LabelAbilityScores(
             title: 'Carisma',
-            modifier: widget.character.charismaModifier,
-            score: widget.character.charisma,
+            modifier: widget.character.atributes[5].modifier,
+            score: widget.character.atributes[5].value,
           ),
         ],
       ),

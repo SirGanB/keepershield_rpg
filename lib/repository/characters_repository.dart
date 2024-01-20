@@ -16,7 +16,7 @@ class CharactersRepository extends ChangeNotifier {
 
   _startRepository() async {
     await _startFirestore();
-    await _loadCharacters();
+    await _loadAll();
 
     notifyListeners();
   }
@@ -25,46 +25,33 @@ class CharactersRepository extends ChangeNotifier {
     db = DBFirestore.get();
   }
 
-  _loadCharacters() async {
+  _loadAll() async {
     _characters.clear();
 
-    if (auth.user != null && _characters.isEmpty) {
+    if (auth.user != null) {
       final snapshot =
           await db.collection('users/${auth.user!.uid}/characters').get();
 
-      for (var doc in snapshot.docs) {
-        CharacterModel character = CharacterModel(
-          id: doc.get('id') ?? '',
-          name: doc.get('name') ?? '',
-          race: doc.get('race') ?? '',
-          classes: (doc.get('classes') as List<dynamic>?)
-                  ?.map((item) =>
-                      Map<String, int>.from(item as Map<String, dynamic>))
-                  .toList() ??
-              [],
-          healthPoints: doc.get('healthPoints') ?? 0,
-          abilityScores: (doc.get('abilityScores') as List<dynamic>?)
-                  ?.map((item) =>
-                      Map<String, int>.from(item as Map<String, dynamic>))
-                  .toList() ??
-              [],
-          savingThrows: (doc.get('savingThrows') as List<dynamic>?)
-                  ?.map((item) =>
-                      Map<String, bool>.from(item as Map<String, dynamic>))
-                  .toList() ??
-              [],
-          speed: doc.get('speed'),
-          skills: (doc.get('skills') as List<dynamic>?)
-                  ?.map((item) =>
-                      Map<String, int>.from(item as Map<String, dynamic>))
-                  .toList() ??
-              [],
+      _characters.addAll(snapshot.docs.map((doc) {
+        return CharacterModel(
+          id: doc.get('id'),
+          name: doc.get('name'),
+          race: doc.get('race'),
+          classes: List<Map<String, int>>.from((doc.get('classes') ?? [])
+              .map((item) => Map<String, int>.from(item))),
+          currentHealth: doc.get('currentHealth') ?? 1,
+          maxHealth: doc.get('maxHealth') ?? 1,
+          speed: doc.get('speed') ?? 9,
+          atributes: List<Map<String, int>>.from((doc.get('atributes') ?? [])
+              .map((item) => Map<String, int>.from(item))),
+          saves: List<Map<String, bool>>.from((doc.get('saves') ?? [])
+              .map((item) => Map<String, bool>.from(item))),
+          skills: List<Map<String, int>>.from((doc.get('skills') ?? [])
+              .map((item) => Map<String, int>.from(item))),
         );
+      }));
 
-        _characters.add(character);
-
-        notifyListeners();
-      }
+      notifyListeners();
     }
   }
 
@@ -80,10 +67,11 @@ class CharactersRepository extends ChangeNotifier {
       'name': character.name,
       'race': character.race,
       'classes': character.classes,
-      'healthPoints': character.healthPoints,
-      'abilityScores': character.abilityScores,
-      'savingThrows': character.savingThrows,
+      'currentHealth': character.currentHealth,
+      'maxHealth': character.maxHealth,
       'speed': character.speed,
+      'atributes': character.atributes,
+      'saves': character.saves,
       'skills': character.skills,
     });
 
@@ -99,28 +87,6 @@ class CharactersRepository extends ChangeNotifier {
         .delete();
 
     _characters.remove(character);
-
-    notifyListeners();
-  }
-
-  updateSkill(CharacterModel character, String skill, int newValue) async {
-    int index = _characters.indexWhere((c) => c.id == character.id);
-
-    if (index != -1) {
-      for (int i = 0; i < _characters[index].skills.length; i++) {
-        if (_characters[index].skills[i].containsKey(skill)) {
-          _characters[index].skills[i][skill] = newValue;
-          break;
-        }
-      }
-    }
-
-    await db
-        .collection('users/${auth.user!.uid}/characters')
-        .doc(character.id)
-        .update({
-      'skills': character.skills,
-    });
 
     notifyListeners();
   }
