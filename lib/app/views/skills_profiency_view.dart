@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/character_sheet/label_skill_proficiency_wdgt.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 
 class SkillsProficencyView extends StatefulWidget {
@@ -32,9 +33,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[0].values.first,
                       title: 'Atletismo',
-                      value: widget.character.skills[0].keys.first,
+                      proficiency:
+                          widget.character.atributes.strength.athletics,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.strength.modifier,
+                        proficiency:
+                            widget.character.atributes.strength.athletics,
+                      ),
                     ),
                   ),
                   _buildTitleProficiency(title: 'Destreza'),
@@ -45,9 +51,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[1].values.first,
                       title: 'Acrobacia',
-                      value: widget.character.skills[1].keys.first,
+                      proficiency:
+                          widget.character.atributes.dexterity.acrobatics,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.dexterity.modifier,
+                        proficiency:
+                            widget.character.atributes.dexterity.acrobatics,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -57,9 +68,13 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[2].values.first,
                       title: 'Furtividade',
-                      value: widget.character.skills[2].keys.first,
+                      proficiency: widget.character.atributes.dexterity.stealth,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.dexterity.modifier,
+                        proficiency:
+                            widget.character.atributes.dexterity.stealth,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -69,9 +84,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[3].values.first,
                       title: 'Prestidigitação',
-                      value: widget.character.skills[3].keys.first,
+                      proficiency:
+                          widget.character.atributes.dexterity.sleightOfHands,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.dexterity.modifier,
+                        proficiency:
+                            widget.character.atributes.dexterity.sleightOfHands,
+                      ),
                     ),
                   ),
                   _buildTitleProficiency(title: 'Inteligência'),
@@ -82,9 +102,15 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[4].values.first,
                       title: 'Arcanismo',
-                      value: widget.character.skills[4].keys.first,
+                      proficiency:
+                          widget.character.atributes.intelligence.arcana,
+                      value: widget.character.defineProficiencyValue(
+                        modifier:
+                            widget.character.atributes.intelligence.modifier,
+                        proficiency:
+                            widget.character.atributes.intelligence.arcana,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -94,9 +120,15 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[5].values.first,
                       title: 'História',
-                      value: widget.character.skills[5].keys.first,
+                      proficiency:
+                          widget.character.atributes.intelligence.history,
+                      value: widget.character.defineProficiencyValue(
+                        modifier:
+                            widget.character.atributes.intelligence.modifier,
+                        proficiency:
+                            widget.character.atributes.intelligence.history,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -106,9 +138,15 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[6].values.first,
                       title: 'Investigação',
-                      value: widget.character.skills[6].keys.first,
+                      proficiency:
+                          widget.character.atributes.intelligence.investigation,
+                      value: widget.character.defineProficiencyValue(
+                        modifier:
+                            widget.character.atributes.intelligence.modifier,
+                        proficiency: widget
+                            .character.atributes.intelligence.investigation,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -118,9 +156,15 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[7].values.first,
                       title: 'Natureza',
-                      value: widget.character.skills[7].keys.first,
+                      proficiency:
+                          widget.character.atributes.intelligence.nature,
+                      value: widget.character.defineProficiencyValue(
+                        modifier:
+                            widget.character.atributes.intelligence.modifier,
+                        proficiency:
+                            widget.character.atributes.intelligence.nature,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -130,9 +174,15 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[8].values.first,
                       title: 'Religião',
-                      value: widget.character.skills[8].keys.first,
+                      proficiency:
+                          widget.character.atributes.intelligence.religion,
+                      value: widget.character.defineProficiencyValue(
+                        modifier:
+                            widget.character.atributes.intelligence.modifier,
+                        proficiency:
+                            widget.character.atributes.intelligence.religion,
+                      ),
                     ),
                   ),
                 ],
@@ -155,9 +205,12 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[9].values.first,
                       title: 'Intuição',
-                      value: widget.character.skills[9].keys.first,
+                      proficiency: widget.character.atributes.wisdom.insight,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.wisdom.modifier,
+                        proficiency: widget.character.atributes.wisdom.insight,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -167,9 +220,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[10].values.first,
                       title: 'Lidar com Animais',
-                      value: widget.character.skills[10].keys.first,
+                      proficiency:
+                          widget.character.atributes.wisdom.animalHandling,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.wisdom.modifier,
+                        proficiency:
+                            widget.character.atributes.wisdom.animalHandling,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -179,9 +237,12 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[11].values.first,
                       title: 'Medicina',
-                      value: widget.character.skills[11].keys.first,
+                      proficiency: widget.character.atributes.wisdom.medicine,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.wisdom.modifier,
+                        proficiency: widget.character.atributes.wisdom.medicine,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -191,9 +252,13 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[12].values.first,
                       title: 'Percepção',
-                      value: widget.character.skills[12].keys.first,
+                      proficiency: widget.character.atributes.wisdom.perception,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.wisdom.modifier,
+                        proficiency:
+                            widget.character.atributes.wisdom.perception,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -203,9 +268,12 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[13].values.first,
                       title: 'Sobrevivência',
-                      value: widget.character.skills[13].keys.first,
+                      proficiency: widget.character.atributes.wisdom.survival,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.wisdom.modifier,
+                        proficiency: widget.character.atributes.wisdom.survival,
+                      ),
                     ),
                   ),
                   _buildTitleProficiency(title: 'Carisma'),
@@ -216,9 +284,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[14].values.first,
                       title: 'Atuação',
-                      value: widget.character.skills[14].keys.first,
+                      proficiency:
+                          widget.character.atributes.charisma.performance,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.charisma.modifier,
+                        proficiency:
+                            widget.character.atributes.charisma.performance,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -228,9 +301,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[15].values.first,
                       title: 'Enganação',
-                      value: widget.character.skills[15].keys.first,
+                      proficiency:
+                          widget.character.atributes.charisma.deception,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.charisma.modifier,
+                        proficiency:
+                            widget.character.atributes.charisma.deception,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -240,9 +318,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[16].values.first,
                       title: 'Intimidação',
-                      value: widget.character.skills[16].keys.first,
+                      proficiency:
+                          widget.character.atributes.charisma.intimidation,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.charisma.modifier,
+                        proficiency:
+                            widget.character.atributes.charisma.intimidation,
+                      ),
                     ),
                   ),
                   GestureDetector(
@@ -252,9 +335,14 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       );
                     },
                     child: SkillProficiencyWdgt(
-                      proficiency: widget.character.skills[17].values.first,
                       title: 'Persuasão',
-                      value: widget.character.skills[17].keys.first,
+                      proficiency:
+                          widget.character.atributes.charisma.persuasion,
+                      value: widget.character.defineProficiencyValue(
+                        modifier: widget.character.atributes.charisma.modifier,
+                        proficiency:
+                            widget.character.atributes.charisma.persuasion,
+                      ),
                     ),
                   ),
                 ],
@@ -322,15 +410,15 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       children: [
                         _buildProficiencyBtn(
                           text: 'Normal',
-                          value: widget.character.skills[0].keys.first,
+                          proficiency: ProficiencyType.normal,
                         ),
                         _buildProficiencyBtn(
                           text: 'Proficiênte',
-                          value: 1,
+                          proficiency: ProficiencyType.proficient,
                         ),
                         _buildProficiencyBtn(
                           text: 'Especialista',
-                          value: 2,
+                          proficiency: ProficiencyType.expert,
                         ),
                       ],
                     ),
@@ -342,10 +430,11 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
 
   TextButton _buildProficiencyBtn({
     required String text,
-    required int value,
+    required ProficiencyType proficiency,
   }) {
     return TextButton(
       onPressed: () async {
+        print('Proficiência: $proficiency');
         Navigator.pop(context);
       },
       child: Text(

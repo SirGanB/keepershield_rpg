@@ -4,14 +4,14 @@ import 'package:keepershield_rpg/repository/tables_repository.dart';
 import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key, collWelcomeMsg});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key, collWelcomeMsg});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginPageState extends State<LoginPage> {
   final formKey = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();

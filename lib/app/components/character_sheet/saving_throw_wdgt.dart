@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
 
 class LabelSavingThrowWdgt extends StatelessWidget {
   final String title;
-  final bool isProficient;
+  final ProficiencyType proficiency;
   final int value;
-  const LabelSavingThrowWdgt({
-    super.key,
+
+  LabelSavingThrowWdgt({
     required this.title,
-    required this.isProficient,
+    required this.proficiency,
     required this.value,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool _proficiency = false;
+    proficiency == ProficiencyType.normal
+        ? _proficiency = false
+        : _proficiency = true;
+
     return SizedBox(
       height: 50,
       width: 105,
@@ -52,7 +58,7 @@ class LabelSavingThrowWdgt extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
-                value: isProficient,
+                value: _proficiency,
                 onChanged: null,
               ),
             ),

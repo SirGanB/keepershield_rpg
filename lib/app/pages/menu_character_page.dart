@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:keepershield_rpg/app/components/_lib_components.dart';
-import 'package:keepershield_rpg/app/views/character_view/character_view.dart';
+import 'package:keepershield_rpg/app/pages/character_page.dart';
 import 'package:keepershield_rpg/models/character_model.dart';
 import 'package:keepershield_rpg/repository/characters_repository.dart';
 import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-class MenuCharacterView extends StatefulWidget {
-  const MenuCharacterView({super.key});
+class MenuCharacterPage extends StatefulWidget {
+  const MenuCharacterPage({super.key});
 
   @override
-  State<MenuCharacterView> createState() => _MenuCharacterViewState();
+  State<MenuCharacterPage> createState() => _MenuCharacterPageState();
 }
 
-class _MenuCharacterViewState extends State<MenuCharacterView> {
+class _MenuCharacterPageState extends State<MenuCharacterPage> {
   late CharactersRepository characters;
 
   final _classController = TextEditingController();
@@ -38,9 +37,10 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => CharacterView(
+                          builder: (context) => CharacterPage(
                             character: CharacterViewModel(
                               character: repository.characters[i],
+                              repository: repository,
                             ),
                           ),
                         ),
@@ -48,7 +48,9 @@ class _MenuCharacterViewState extends State<MenuCharacterView> {
                     },
                     child: CustomCardWdgt(
                       title: repository.characters[i].name,
-                      subtitle: '',
+                      subtitle: repository.characters[i].race +
+                          ', ' +
+                          repository.characters[i].classes.first.keys.first,
                       onPressed: () =>
                           characters.delete(repository.characters[i]),
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/_lib_components.dart';
-import 'package:keepershield_rpg/app/views/table_view/table_view.dart';
+import 'package:keepershield_rpg/app/pages/table_page.dart';
 import 'package:keepershield_rpg/repository/tables_repository.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +33,7 @@ class _MenuTableViewState extends State<MenuTableView> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                              TableView(table: coll.tables[i]),
+                              TablePage(table: coll.tables[i]),
                         ),
                       );
                     },

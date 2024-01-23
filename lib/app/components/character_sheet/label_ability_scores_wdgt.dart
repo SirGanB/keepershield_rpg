@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:keepershield_rpg/models/ability_model.dart';
 
 class LabelAbilityScores extends StatelessWidget {
   final String title;
-  final int modifier;
-  final int score;
-  const LabelAbilityScores({
-    super.key,
-    required this.title,
-    required this.modifier,
-    required this.score,
-  });
+  final AbilityModel ability;
+
+  const LabelAbilityScores({required this.ability, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +28,9 @@ class LabelAbilityScores extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  modifier > 0 ? '+$modifier' : '$modifier',
+                  ability.modifier > 0
+                      ? '+${ability.modifier}'
+                      : '${ability.modifier}',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
@@ -88,7 +86,7 @@ class LabelAbilityScores extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '$score',
+                      '${ability.value}',
                       style: const TextStyle(fontSize: 10),
                     ),
                   ),

@@ -23,18 +23,15 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
           children: [
             LabelAbilityScores(
               title: 'Força',
-              modifier: widget.character.atributes[0].modifier,
-              score: widget.character.atributes[0].value,
+              ability: widget.character.atributes.strength,
             ),
             LabelAbilityScores(
               title: 'Destreza',
-              modifier: widget.character.atributes[1].modifier,
-              score: widget.character.atributes[1].value,
+              ability: widget.character.atributes.dexterity,
             ),
             LabelAbilityScores(
               title: 'Constituição',
-              modifier: widget.character.atributes[2].modifier,
-              score: widget.character.atributes[2].value,
+              ability: widget.character.atributes.constitution,
             ),
           ],
         ),
@@ -44,18 +41,15 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
         children: [
           LabelAbilityScores(
             title: 'Inteligência',
-            modifier: widget.character.atributes[3].modifier,
-            score: widget.character.atributes[3].value,
+            ability: widget.character.atributes.intelligence,
           ),
           LabelAbilityScores(
             title: 'Sabedoria',
-            modifier: widget.character.atributes[4].modifier,
-            score: widget.character.atributes[4].value,
+            ability: widget.character.atributes.wisdom,
           ),
           LabelAbilityScores(
             title: 'Carisma',
-            modifier: widget.character.atributes[5].modifier,
-            score: widget.character.atributes[5].value,
+            ability: widget.character.atributes.charisma,
           ),
         ],
       ),

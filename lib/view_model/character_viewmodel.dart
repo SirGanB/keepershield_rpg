@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/models/_lib_model.dart';
+import 'package:keepershield_rpg/models/ability_model.dart';
+import 'package:keepershield_rpg/repository/characters_repository.dart';
 
 class CharacterViewModel extends ChangeNotifier {
+  CharacterModel _character;
+  CharactersRepository _repository;
   int level = 0;
-  final CharacterModel _character;
-  List<AbilityScoreModel> atributes = [];
-  List<int> saves = [];
-  // Map<value, proficiency>
-  List<Map<int, int>> skills = [];
   int proficiencyBonus = 0;
 
-  CharacterViewModel({required CharacterModel character})
-      : _character = character {
+  CharacterViewModel({
+    required CharacterModel character,
+    required CharactersRepository repository,
+  })  : _character = character,
+        _repository = repository {
     _setLevel();
     _setProficiencyBonus();
-    _setAtributes();
-    _setSaves();
-    _setSkills();
   }
 
   String get name => _character.name;
   int get currentHealth => _character.currentHealth;
   int get maxHealth => _character.maxHealth;
+  AbilityScoresCollection get atributes => _character.abilityScores;
 
   _setLevel() {
     _character.classes.forEach((map) {
@@ -33,54 +33,56 @@ class CharacterViewModel extends ChangeNotifier {
 
   _setProficiencyBonus() => proficiencyBonus = 2 + ((level - 1) ~/ 4);
 
-  _setAtributes() {
-    for (var i = 0; i < 6; i++) {
-      atributes.add(AbilityScoreModel(
-        isProfiency: _character.saves[i].values.first,
-        value: _character.atributes[i].values.first,
-      ));
+  int defineProficiencyValue({
+    required int modifier,
+    required ProficiencyType proficiency,
+  }) {
+    if (proficiency == ProficiencyType.normal)
+      return modifier;
+    else if (proficiency == ProficiencyType.proficient)
+      return modifier + proficiencyBonus;
+    else
+      return modifier + (proficiencyBonus * 2);
+  }
+
+  int defineArmorClass() => atributes.dexterity.modifier + 10;
+
+  int definePassivePerception() {
+    int value = defineProficiencyValue(
+      modifier: atributes.wisdom.modifier,
+      proficiency: atributes.wisdom.perception,
+    );
+
+    return value + 10;
+  }
+
+  void updateSavingThrow({
+    required AbilityModel ability,
+    required ProficiencyType proficiency,
+  }) {
+    switch (ability.runtimeType) {
+      case Strength:
+        _character.abilityScores.strength.proficiency = proficiency;
+        break;
+      case Dexterity:
+        _character.abilityScores.dexterity.proficiency = proficiency;
+        break;
+      case Constitution:
+        _character.abilityScores.constitution.proficiency = proficiency;
+        break;
+      case Intelligence:
+        _character.abilityScores.intelligence.proficiency = proficiency;
+        break;
+      case Wisdom:
+        _character.abilityScores.wisdom.proficiency = proficiency;
+        break;
+      case Charisma:
+        _character.abilityScores.charisma.proficiency = proficiency;
+        break;
     }
+
+    _repository.create(character: _character);
+
+    notifyListeners();
   }
-
-  _setSaves() {
-    atributes.forEach((e) {
-      saves.add(e.isProfiency ? e.modifier + proficiencyBonus : e.modifier);
-    });
-  }
-
-  _setSkills() {
-    int i = 0;
-    int ii = 0;
-
-    _character.skills.forEach((map) {
-      if (i == 0) {
-        ii = 0;
-      } else if (i < 4) {
-        ii = 1;
-      } else if (i < 9) {
-        ii = 3;
-      } else if (i < 14) {
-        ii = 4;
-      } else {
-        ii = 5;
-      }
-
-      map.forEach((key, proficiency) {
-        int value = 0;
-
-        if (proficiency == 0)
-          value = atributes[ii].modifier;
-        else if (proficiency == 1)
-          value = atributes[ii].modifier + proficiencyBonus;
-        else
-          value = atributes[ii].modifier + (proficiencyBonus * 2);
-
-        skills.add({value: proficiency});
-      });
-
-      i++;
-    });
-  }
-
-  updateSavingThrow() {}
 }

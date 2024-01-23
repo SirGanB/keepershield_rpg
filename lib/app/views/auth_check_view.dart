@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/views/home_view.dart';
-import 'package:keepershield_rpg/app/views/login_view.dart';
+import 'package:keepershield_rpg/app/pages/login_page.dart';
+import 'package:keepershield_rpg/app/pages/home_page.dart';
 import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:provider/provider.dart';
 
@@ -19,9 +19,9 @@ class _AuthCheckViewState extends State<AuthCheckView> {
     if (auth.isLoading) {
       return loading();
     } else if (auth.user == null) {
-      return const LoginView();
+      return const LoginPage();
     } else {
-      return const HomeView();
+      return const HomePage();
     }
   }
 

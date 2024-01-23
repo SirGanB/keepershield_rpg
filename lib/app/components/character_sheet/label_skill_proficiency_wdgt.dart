@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
 
 class SkillProficiencyWdgt extends StatelessWidget {
-  final int value;
-  final int proficiency;
   final String title;
+  final ProficiencyType proficiency;
+  final int value;
 
   const SkillProficiencyWdgt({
-    super.key,
     required this.title,
     required this.proficiency,
     required this.value,
@@ -24,7 +24,8 @@ class SkillProficiencyWdgt extends StatelessWidget {
             child: Icon(
               _defineIcon(),
               size: 10,
-              color: proficiency == 2 ? Colors.amber : null,
+              color:
+                  proficiency == ProficiencyType.expert ? Colors.amber : null,
             ),
           ),
           Expanded(
@@ -34,7 +35,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
                 title.toUpperCase(),
                 style: TextStyle(
                   fontSize: 9,
-                  color: proficiency == 2 ? Colors.amber : null,
+                  color: proficiency == ProficiencyType.expert
+                      ? Colors.amber
+                      : null,
                 ),
               ),
             ),
@@ -46,7 +49,7 @@ class SkillProficiencyWdgt extends StatelessWidget {
               height: 15,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: proficiency == 2
+                  color: proficiency == ProficiencyType.expert
                       ? Colors.amber
                       : Theme.of(context).colorScheme.outline,
                 ),
@@ -57,7 +60,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
                   value > 0 ? '+$value' : '$value',
                   style: TextStyle(
                     fontSize: 8,
-                    color: proficiency == 2 ? Colors.amber : null,
+                    color: proficiency == ProficiencyType.expert
+                        ? Colors.amber
+                        : Theme.of(context).colorScheme.outline,
                   ),
                 ),
               ),
@@ -69,9 +74,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
   }
 
   IconData? _defineIcon() {
-    if (proficiency == 0) {
+    if (proficiency == ProficiencyType.normal) {
       return Icons.circle_outlined;
-    } else if (proficiency == 1) {
+    } else if (proficiency == ProficiencyType.proficient) {
       return Icons.circle;
     } else {
       return Icons.star;

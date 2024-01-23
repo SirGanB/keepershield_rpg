@@ -1,44 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/views/character_sheet/ability_scores_view.dart';
-import 'package:keepershield_rpg/app/views/character_sheet/saving_throws_view.dart';
-import 'package:keepershield_rpg/app/views/character_sheet/skills_profiency_view.dart';
-import 'package:keepershield_rpg/repository/characters_repository.dart';
+import 'package:keepershield_rpg/app/views/ability_scores_view.dart';
+import 'package:keepershield_rpg/app/views/saving_throws_view.dart';
+import 'package:keepershield_rpg/app/views/skills_profiency_view.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-class CharacterView extends StatefulWidget {
+class CharacterPage extends StatefulWidget {
   final CharacterViewModel character;
 
-  const CharacterView({super.key, required this.character});
+  const CharacterPage({Key? key, required this.character}) : super(key: key);
+
   @override
-  _CharacterViewState createState() => _CharacterViewState();
+  _CharacterPageState createState() => _CharacterPageState();
 }
 
-class _CharacterViewState extends State<CharacterView> {
+class _CharacterPageState extends State<CharacterPage> {
   int _screenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CharactersRepository>(builder: (context, repository, _) {
-      return Scaffold(
+    return ChangeNotifierProvider.value(
+      value: widget.character,
+      child: Scaffold(
         body: Column(
           children: [
-            // Fixed Label
             _buildCharacterProfile(context),
-
-            // Scrollable Label
             Expanded(
-                child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    if (_screenIndex == 0) _buildAtributeLabel(),
-                    if (_screenIndex == 1) const Text('View 2'),
-                  ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      if (_screenIndex == 0) _buildAttributeLabel(),
+                      if (_screenIndex == 1) const Text('View 2'),
+                    ],
+                  ),
                 ),
               ),
-            ))
+            )
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -61,8 +60,8 @@ class _CharacterViewState extends State<CharacterView> {
             ),
           ],
         ),
-      );
-    });
+      ),
+    );
   }
 
   Widget _buildCharacterProfile(BuildContext context) {
@@ -83,18 +82,19 @@ class _CharacterViewState extends State<CharacterView> {
                   children: [
                     _buildProperty(
                       icon: Icons.favorite,
-                      title: 'Pontos\nde Vida',
-                      text: '15',
+                      title: 'Pontos de Vida',
+                      text:
+                          '${widget.character.currentHealth}/${widget.character.maxHealth}',
                     ),
                     _buildProperty(
                       icon: Icons.shield,
                       title: 'Classe de Armadura',
-                      text: '',
+                      text: '${widget.character.defineArmorClass()}',
                     ),
                     _buildProperty(
                       icon: Icons.remove_red_eye,
                       title: 'Percepção Passiva',
-                      text: '',
+                      text: '${widget.character.definePassivePerception()}',
                     ),
                   ],
                 ),
@@ -117,7 +117,6 @@ class _CharacterViewState extends State<CharacterView> {
                       child: const Icon(Icons.question_mark, size: 50),
                     ),
                   ),
-                  //Text(widget.character),
                 ],
               ),
               SizedBox(
@@ -132,13 +131,14 @@ class _CharacterViewState extends State<CharacterView> {
                       text: '9m',
                     ),
                     _buildProperty(
-                        icon: Icons.sports_martial_arts,
-                        title: 'Bônus de Proficiência',
-                        text: '+${widget.character.proficiencyBonus}'),
+                      icon: Icons.sports_martial_arts,
+                      title: 'Bônus de Proficiência',
+                      text: '+${widget.character.proficiencyBonus}',
+                    ),
                     _buildProperty(
                       icon: Icons.sports_kabaddi,
                       title: 'Bônus de Iniciativa',
-                      text: '+2',
+                      text: '+${widget.character.atributes.dexterity.modifier}',
                     ),
                   ],
                 ),
@@ -209,13 +209,13 @@ class _CharacterViewState extends State<CharacterView> {
     );
   }
 
-  Widget _buildAtributeLabel() {
+  Widget _buildAttributeLabel() {
     return SingleChildScrollView(
       child: Column(
         children: [
           AbilityScoresView(character: widget.character),
           SavingThrowsView(character: widget.character),
-          SkillsProficencyView(character: widget.character)
+          SkillsProficencyView(character: widget.character),
         ],
       ),
     );

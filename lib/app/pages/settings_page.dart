@@ -4,14 +4,14 @@ import 'package:keepershield_rpg/repository/tables_repository.dart';
 import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:provider/provider.dart';
 
-class SettingsView extends StatefulWidget {
-  const SettingsView({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
 
   @override
-  State<SettingsView> createState() => _SettingsViewState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsViewState extends State<SettingsView> {
+class _SettingsPageState extends State<SettingsPage> {
   late CharactersRepository characters;
   late TablesRepository tables;
 
