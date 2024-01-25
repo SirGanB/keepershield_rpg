@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/character_sheet/label_skill_proficiency_wdgt.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
 import 'package:keepershield_rpg/models/definitions.dart';
+import 'package:keepershield_rpg/models/skill_model.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class SkillsProficencyView extends StatefulWidget {
   final CharacterViewModel character;
@@ -15,342 +17,383 @@ class SkillsProficencyView extends StatefulWidget {
 class _SkillsProficencyViewState extends State<SkillsProficencyView> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const CustomDividerWdgt(title: 'Perícias'),
-        SizedBox(
-          height: 415,
-          child: Row(children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildTitleProficiency(title: 'Força'),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Atletismo',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Atletismo',
-                      proficiency:
-                          widget.character.atributes.strength.athletics,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.strength.modifier,
-                        proficiency:
-                            widget.character.atributes.strength.athletics,
+    return Consumer<CharacterViewModel>(
+      builder: (context, character, child) {
+        return Column(
+          children: [
+            const CustomDividerWdgt(title: 'Perícias'),
+            SizedBox(
+              height: 415,
+              child: Row(children: [
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildTitleProficiency(title: 'Força'),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Atletismo',
+                            skill: Athletics(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Atletismo',
+                          proficiency: widget.character.abilityScores.strength
+                              .athletics.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.strength.modifier,
+                            proficiency: widget.character.abilityScores.strength
+                                .athletics.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  _buildTitleProficiency(title: 'Destreza'),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Acrobacia',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Acrobacia',
-                      proficiency:
-                          widget.character.atributes.dexterity.acrobatics,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.dexterity.modifier,
-                        proficiency:
-                            widget.character.atributes.dexterity.acrobatics,
+                      _buildTitleProficiency(title: 'Destreza'),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                              text: 'Acrobacia', skill: Acrobatics());
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Acrobacia',
+                          proficiency: widget.character.abilityScores.dexterity
+                              .acrobatics.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.dexterity.modifier,
+                            proficiency: widget.character.abilityScores
+                                .dexterity.acrobatics.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Furtividade',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Furtividade',
-                      proficiency: widget.character.atributes.dexterity.stealth,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.dexterity.modifier,
-                        proficiency:
-                            widget.character.atributes.dexterity.stealth,
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Furtividade',
+                            skill: Stealth(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Furtividade',
+                          proficiency: widget.character.abilityScores.dexterity
+                              .stealth.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.dexterity.modifier,
+                            proficiency: widget.character.abilityScores
+                                .dexterity.stealth.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Presitidigitação',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Prestidigitação',
-                      proficiency:
-                          widget.character.atributes.dexterity.sleightOfHands,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.dexterity.modifier,
-                        proficiency:
-                            widget.character.atributes.dexterity.sleightOfHands,
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Presitidigitação',
+                            skill: SleightOfHand(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Prestidigitação',
+                          proficiency: widget.character.abilityScores.dexterity
+                              .sleightOfHand.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.dexterity.modifier,
+                            proficiency: widget.character.abilityScores
+                                .dexterity.sleightOfHand.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  _buildTitleProficiency(title: 'Inteligência'),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Arcanismo',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Arcanismo',
-                      proficiency:
-                          widget.character.atributes.intelligence.arcana,
-                      value: widget.character.defineProficiencyValue(
-                        modifier:
-                            widget.character.atributes.intelligence.modifier,
-                        proficiency:
-                            widget.character.atributes.intelligence.arcana,
+                      _buildTitleProficiency(title: 'Inteligência'),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Arcanismo',
+                            skill: Arcana(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Arcanismo',
+                          proficiency: widget.character.abilityScores
+                              .intelligence.arcana.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.intelligence.modifier,
+                            proficiency: widget.character.abilityScores
+                                .intelligence.arcana.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'História',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'História',
-                      proficiency:
-                          widget.character.atributes.intelligence.history,
-                      value: widget.character.defineProficiencyValue(
-                        modifier:
-                            widget.character.atributes.intelligence.modifier,
-                        proficiency:
-                            widget.character.atributes.intelligence.history,
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'História',
+                            skill: History(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'História',
+                          proficiency: widget.character.abilityScores
+                              .intelligence.history.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.intelligence.modifier,
+                            proficiency: widget.character.abilityScores
+                                .intelligence.history.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Investigação',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Investigação',
-                      proficiency:
-                          widget.character.atributes.intelligence.investigation,
-                      value: widget.character.defineProficiencyValue(
-                        modifier:
-                            widget.character.atributes.intelligence.modifier,
-                        proficiency: widget
-                            .character.atributes.intelligence.investigation,
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Investigação',
+                            skill: Investigation(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Investigação',
+                          proficiency: widget.character.abilityScores
+                              .intelligence.investigation.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.intelligence.modifier,
+                            proficiency: widget.character.abilityScores
+                                .intelligence.investigation.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Natureza',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Natureza',
-                      proficiency:
-                          widget.character.atributes.intelligence.nature,
-                      value: widget.character.defineProficiencyValue(
-                        modifier:
-                            widget.character.atributes.intelligence.modifier,
-                        proficiency:
-                            widget.character.atributes.intelligence.nature,
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Natureza',
+                            skill: Nature(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Natureza',
+                          proficiency: widget.character.abilityScores
+                              .intelligence.nature.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.intelligence.modifier,
+                            proficiency: widget.character.abilityScores
+                                .intelligence.nature.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Religião',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Religião',
-                      proficiency:
-                          widget.character.atributes.intelligence.religion,
-                      value: widget.character.defineProficiencyValue(
-                        modifier:
-                            widget.character.atributes.intelligence.modifier,
-                        proficiency:
-                            widget.character.atributes.intelligence.religion,
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Religião',
+                            skill: Religion(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Religião',
+                          proficiency: widget.character.abilityScores
+                              .intelligence.religion.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.intelligence.modifier,
+                            proficiency: widget.character.abilityScores
+                                .intelligence.religion.proficiency,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                VerticalDivider(
+                  thickness: 2,
+                  width: 2,
+                  color: Theme.of(context).colorScheme.outline,
+                ),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildTitleProficiency(title: 'Sabedoria'),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Intuição',
+                            skill: Insight(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Intuição',
+                          proficiency: widget.character.abilityScores.wisdom
+                              .insight.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier:
+                                widget.character.abilityScores.wisdom.modifier,
+                            proficiency: widget.character.abilityScores.wisdom
+                                .insight.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Lidar com Animais',
+                            skill: AnimalHandling(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Lidar com Animais',
+                          proficiency: widget.character.abilityScores.wisdom
+                              .animalHandling.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier:
+                                widget.character.abilityScores.wisdom.modifier,
+                            proficiency: widget.character.abilityScores.wisdom
+                                .animalHandling.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Medicina',
+                            skill: Medicine(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Medicina',
+                          proficiency: widget.character.abilityScores.wisdom
+                              .medicine.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier:
+                                widget.character.abilityScores.wisdom.modifier,
+                            proficiency: widget.character.abilityScores.wisdom
+                                .medicine.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Percepção',
+                            skill: Perception(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Percepção',
+                          proficiency: widget.character.abilityScores.wisdom
+                              .perception.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier:
+                                widget.character.abilityScores.wisdom.modifier,
+                            proficiency: widget.character.abilityScores.wisdom
+                                .perception.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Sobrevivência',
+                            skill: Survival(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Sobrevivência',
+                          proficiency: widget.character.abilityScores.wisdom
+                              .survival.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier:
+                                widget.character.abilityScores.wisdom.modifier,
+                            proficiency: widget.character.abilityScores.wisdom
+                                .survival.proficiency,
+                          ),
+                        ),
+                      ),
+                      _buildTitleProficiency(title: 'Carisma'),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Atuação',
+                            skill: Performance(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Atuação',
+                          proficiency: widget.character.abilityScores.charisma
+                              .performance.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.charisma.modifier,
+                            proficiency: widget.character.abilityScores.charisma
+                                .performance.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Enganação',
+                            skill: Deception(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Enganação',
+                          proficiency: widget.character.abilityScores.charisma
+                              .deception.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.charisma.modifier,
+                            proficiency: widget.character.abilityScores.charisma
+                                .deception.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Intimidação',
+                            skill: Intimidation(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Intimidação',
+                          proficiency: widget.character.abilityScores.charisma
+                              .intimidation.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.charisma.modifier,
+                            proficiency: widget.character.abilityScores.charisma
+                                .intimidation.proficiency,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onLongPressStart: (details) {
+                          _showPopupSkillEdit(
+                            text: 'Persuasão',
+                            skill: Persuasion(),
+                          );
+                        },
+                        child: SkillProficiencyWdgt(
+                          title: 'Persuasão',
+                          proficiency: widget.character.abilityScores.charisma
+                              .persuasion.proficiency,
+                          value: widget.character.defineProficiencyValue(
+                            modifier: widget
+                                .character.abilityScores.charisma.modifier,
+                            proficiency: widget.character.abilityScores.charisma
+                                .persuasion.proficiency,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
             ),
-            VerticalDivider(
-              thickness: 2,
-              width: 2,
-              color: Theme.of(context).colorScheme.outline,
-            ),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _buildTitleProficiency(title: 'Sabedoria'),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Intuição',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Intuição',
-                      proficiency: widget.character.atributes.wisdom.insight,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.wisdom.modifier,
-                        proficiency: widget.character.atributes.wisdom.insight,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Lidar com Animais',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Lidar com Animais',
-                      proficiency:
-                          widget.character.atributes.wisdom.animalHandling,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.wisdom.modifier,
-                        proficiency:
-                            widget.character.atributes.wisdom.animalHandling,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Medicina',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Medicina',
-                      proficiency: widget.character.atributes.wisdom.medicine,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.wisdom.modifier,
-                        proficiency: widget.character.atributes.wisdom.medicine,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Percepção',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Percepção',
-                      proficiency: widget.character.atributes.wisdom.perception,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.wisdom.modifier,
-                        proficiency:
-                            widget.character.atributes.wisdom.perception,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Sobrevivência',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Sobrevivência',
-                      proficiency: widget.character.atributes.wisdom.survival,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.wisdom.modifier,
-                        proficiency: widget.character.atributes.wisdom.survival,
-                      ),
-                    ),
-                  ),
-                  _buildTitleProficiency(title: 'Carisma'),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Atuação',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Atuação',
-                      proficiency:
-                          widget.character.atributes.charisma.performance,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.charisma.modifier,
-                        proficiency:
-                            widget.character.atributes.charisma.performance,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Enganação',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Enganação',
-                      proficiency:
-                          widget.character.atributes.charisma.deception,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.charisma.modifier,
-                        proficiency:
-                            widget.character.atributes.charisma.deception,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Intimidação',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Intimidação',
-                      proficiency:
-                          widget.character.atributes.charisma.intimidation,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.charisma.modifier,
-                        proficiency:
-                            widget.character.atributes.charisma.intimidation,
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onLongPressStart: (details) {
-                      _showPopupSkillEdit(
-                        text: 'Persuasão',
-                      );
-                    },
-                    child: SkillProficiencyWdgt(
-                      title: 'Persuasão',
-                      proficiency:
-                          widget.character.atributes.charisma.persuasion,
-                      value: widget.character.defineProficiencyValue(
-                        modifier: widget.character.atributes.charisma.modifier,
-                        proficiency:
-                            widget.character.atributes.charisma.persuasion,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ]),
-        ),
-      ],
+          ],
+        );
+      },
     );
   }
 
@@ -384,7 +427,7 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
     );
   }
 
-  void _showPopupSkillEdit({required String text}) {
+  void _showPopupSkillEdit({required String text, required SkillModel skill}) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -396,8 +439,7 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       child: Text(
-                        'Qual a proficiência do personagem em $text?'
-                            .toUpperCase(),
+                        'Qual a proficiência de ${widget.character.name} em $text?',
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 12,
@@ -409,15 +451,18 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         _buildProficiencyBtn(
-                          text: 'Normal',
+                          text: 'Inapto',
+                          skill: skill,
                           proficiency: ProficiencyType.normal,
                         ),
                         _buildProficiencyBtn(
                           text: 'Proficiênte',
+                          skill: skill,
                           proficiency: ProficiencyType.proficient,
                         ),
                         _buildProficiencyBtn(
                           text: 'Especialista',
+                          skill: skill,
                           proficiency: ProficiencyType.expert,
                         ),
                       ],
@@ -430,11 +475,12 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
 
   TextButton _buildProficiencyBtn({
     required String text,
+    required SkillModel skill,
     required ProficiencyType proficiency,
   }) {
     return TextButton(
       onPressed: () async {
-        print('Proficiência: $proficiency');
+        widget.character.updateSkill(skill: skill, proficiency: proficiency);
         Navigator.pop(context);
       },
       child: Text(

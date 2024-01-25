@@ -50,7 +50,7 @@ class CharactersRepository extends ChangeNotifier {
             proficiency: _intToProficiencyType(
               doc.get('abilityScores.strength.proficiency'),
             ),
-            athletics: _intToProficiencyType(
+            athleticsProficiency: _intToProficiencyType(
               doc.get('abilityScores.strength.athletics'),
             ),
           ),
@@ -59,13 +59,13 @@ class CharactersRepository extends ChangeNotifier {
             proficiency: _intToProficiencyType(
               doc.get('abilityScores.dexterity.proficiency'),
             ),
-            acrobatics: _intToProficiencyType(
+            acrobaticsProficiency: _intToProficiencyType(
               doc.get('abilityScores.dexterity.acrobatics'),
             ),
-            sleightOfHands: _intToProficiencyType(
+            sleightOfHandProficiency: _intToProficiencyType(
               doc.get('abilityScores.dexterity.sleightOfHands'),
             ),
-            stealth: _intToProficiencyType(
+            stealthProficiency: _intToProficiencyType(
               doc.get('abilityScores.dexterity.stealth'),
             ),
           ),
@@ -80,19 +80,19 @@ class CharactersRepository extends ChangeNotifier {
             proficiency: _intToProficiencyType(
               doc.get('abilityScores.intelligence.proficiency'),
             ),
-            arcana: _intToProficiencyType(
+            arcanaProficiency: _intToProficiencyType(
               doc.get('abilityScores.intelligence.arcana'),
             ),
-            history: _intToProficiencyType(
+            historyProficiency: _intToProficiencyType(
               doc.get('abilityScores.intelligence.history'),
             ),
-            investigation: _intToProficiencyType(
+            investigationProficiency: _intToProficiencyType(
               doc.get('abilityScores.intelligence.investigation'),
             ),
-            nature: _intToProficiencyType(
+            natureProficiency: _intToProficiencyType(
               doc.get('abilityScores.intelligence.nature'),
             ),
-            religion: _intToProficiencyType(
+            religionProficiency: _intToProficiencyType(
               doc.get('abilityScores.intelligence.religion'),
             ),
           ),
@@ -101,19 +101,19 @@ class CharactersRepository extends ChangeNotifier {
             proficiency: _intToProficiencyType(
               doc.get('abilityScores.wisdom.proficiency'),
             ),
-            animalHandling: _intToProficiencyType(
+            animalHandlingProficiency: _intToProficiencyType(
               doc.get('abilityScores.wisdom.animalHandling'),
             ),
-            insight: _intToProficiencyType(
+            insightProficiency: _intToProficiencyType(
               doc.get('abilityScores.wisdom.insight'),
             ),
-            medicine: _intToProficiencyType(
+            medicineProficiency: _intToProficiencyType(
               doc.get('abilityScores.wisdom.medicine'),
             ),
-            perception: _intToProficiencyType(
+            perceptionProficiency: _intToProficiencyType(
               doc.get('abilityScores.wisdom.perception'),
             ),
-            survival: _intToProficiencyType(
+            survivalProficiency: _intToProficiencyType(
               doc.get('abilityScores.wisdom.survival'),
             ),
           ),
@@ -122,16 +122,16 @@ class CharactersRepository extends ChangeNotifier {
             proficiency: _intToProficiencyType(
               doc.get('abilityScores.charisma.proficiency'),
             ),
-            deception: _intToProficiencyType(
+            deceptionProficiency: _intToProficiencyType(
               doc.get('abilityScores.charisma.deception'),
             ),
-            intimidation: _intToProficiencyType(
+            intimidationProficiency: _intToProficiencyType(
               doc.get('abilityScores.charisma.intimidation'),
             ),
-            performance: _intToProficiencyType(
+            performanceProficiency: _intToProficiencyType(
               doc.get('abilityScores.charisma.performance'),
             ),
-            persuasion: _intToProficiencyType(
+            persuasionProficiency: _intToProficiencyType(
               doc.get('abilityScores.charisma.persuasion'),
             ),
           ),
@@ -174,19 +174,19 @@ class CharactersRepository extends ChangeNotifier {
         'value': character.abilityScores.strength.value,
         'proficiency':
             proficiencyTypeToInt(character.abilityScores.strength.proficiency),
-        'athletics':
-            proficiencyTypeToInt(character.abilityScores.strength.athletics),
+        'athletics': proficiencyTypeToInt(
+            character.abilityScores.strength.athletics.proficiency),
       },
       'dexterity': {
         'value': character.abilityScores.dexterity.value,
         'proficiency':
             proficiencyTypeToInt(character.abilityScores.dexterity.proficiency),
-        'acrobatics':
-            proficiencyTypeToInt(character.abilityScores.dexterity.acrobatics),
+        'acrobatics': proficiencyTypeToInt(
+            character.abilityScores.dexterity.acrobatics.proficiency),
         'sleightOfHands': proficiencyTypeToInt(
-            character.abilityScores.dexterity.sleightOfHands),
-        'stealth':
-            proficiencyTypeToInt(character.abilityScores.dexterity.stealth),
+            character.abilityScores.dexterity.sleightOfHand.proficiency),
+        'stealth': proficiencyTypeToInt(
+            character.abilityScores.dexterity.stealth.proficiency),
       },
       'constitution': {
         'value': character.abilityScores.constitution.value,
@@ -197,43 +197,44 @@ class CharactersRepository extends ChangeNotifier {
         'value': character.abilityScores.intelligence.value,
         'proficiency': proficiencyTypeToInt(
             character.abilityScores.intelligence.proficiency),
-        'arcana':
-            proficiencyTypeToInt(character.abilityScores.intelligence.arcana),
-        'history':
-            proficiencyTypeToInt(character.abilityScores.intelligence.history),
+        'arcana': proficiencyTypeToInt(
+            character.abilityScores.intelligence.arcana.proficiency),
+        'history': proficiencyTypeToInt(
+            character.abilityScores.intelligence.history.proficiency),
         'investigation': proficiencyTypeToInt(
-            character.abilityScores.intelligence.investigation),
-        'nature':
-            proficiencyTypeToInt(character.abilityScores.intelligence.nature),
-        'religion':
-            proficiencyTypeToInt(character.abilityScores.intelligence.religion),
+            character.abilityScores.intelligence.investigation.proficiency),
+        'nature': proficiencyTypeToInt(
+            character.abilityScores.intelligence.nature.proficiency),
+        'religion': proficiencyTypeToInt(
+            character.abilityScores.intelligence.religion.proficiency),
       },
       'wisdom': {
         'value': character.abilityScores.wisdom.value,
         'proficiency':
             proficiencyTypeToInt(character.abilityScores.wisdom.proficiency),
-        'animalHandling':
-            proficiencyTypeToInt(character.abilityScores.wisdom.animalHandling),
-        'insight': proficiencyTypeToInt(character.abilityScores.wisdom.insight),
-        'medicine':
-            proficiencyTypeToInt(character.abilityScores.wisdom.medicine),
-        'perception':
-            proficiencyTypeToInt(character.abilityScores.wisdom.perception),
-        'survival':
-            proficiencyTypeToInt(character.abilityScores.wisdom.survival),
+        'animalHandling': proficiencyTypeToInt(
+            character.abilityScores.wisdom.animalHandling.proficiency),
+        'insight': proficiencyTypeToInt(
+            character.abilityScores.wisdom.insight.proficiency),
+        'medicine': proficiencyTypeToInt(
+            character.abilityScores.wisdom.medicine.proficiency),
+        'perception': proficiencyTypeToInt(
+            character.abilityScores.wisdom.perception.proficiency),
+        'survival': proficiencyTypeToInt(
+            character.abilityScores.wisdom.survival.proficiency),
       },
       'charisma': {
         'value': character.abilityScores.charisma.value,
         'proficiency':
             proficiencyTypeToInt(character.abilityScores.charisma.proficiency),
-        'deception':
-            proficiencyTypeToInt(character.abilityScores.charisma.deception),
-        'intimidation':
-            proficiencyTypeToInt(character.abilityScores.charisma.intimidation),
-        'performance':
-            proficiencyTypeToInt(character.abilityScores.charisma.performance),
-        'persuasion':
-            proficiencyTypeToInt(character.abilityScores.charisma.persuasion),
+        'deception': proficiencyTypeToInt(
+            character.abilityScores.charisma.deception.proficiency),
+        'intimidation': proficiencyTypeToInt(
+            character.abilityScores.charisma.intimidation.proficiency),
+        'performance': proficiencyTypeToInt(
+            character.abilityScores.charisma.performance.proficiency),
+        'persuasion': proficiencyTypeToInt(
+            character.abilityScores.charisma.persuasion.proficiency),
       },
     };
 

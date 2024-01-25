@@ -28,49 +28,52 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
               children: [
                 GestureDetector(
                   onLongPressStart: (details) {
-                    _showPopupSavingThrowEdit(
-                      ability: character.atributes.strength,
+                    _showEditPopup(
+                      ability: character.abilityScores.strength,
                       text: 'Força',
                     );
                   },
                   child: LabelSavingThrowWdgt(
                     title: 'FOR',
-                    proficiency: character.atributes.strength.proficiency,
+                    proficiency: character.abilityScores.strength.proficiency,
                     value: character.defineProficiencyValue(
-                      modifier: character.atributes.strength.modifier,
-                      proficiency: character.atributes.strength.proficiency,
+                      modifier: character.abilityScores.strength.modifier,
+                      proficiency: character.abilityScores.strength.proficiency,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
-                    _showPopupSavingThrowEdit(
-                      ability: character.atributes.dexterity,
+                    _showEditPopup(
+                      ability: character.abilityScores.dexterity,
                       text: 'Destreza',
                     );
                   },
                   child: LabelSavingThrowWdgt(
                     title: 'DES',
-                    proficiency: character.atributes.dexterity.proficiency,
+                    proficiency: character.abilityScores.dexterity.proficiency,
                     value: character.defineProficiencyValue(
-                      modifier: character.atributes.dexterity.modifier,
-                      proficiency: character.atributes.dexterity.proficiency,
+                      modifier: character.abilityScores.dexterity.modifier,
+                      proficiency:
+                          character.abilityScores.dexterity.proficiency,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
-                    _showPopupSavingThrowEdit(
-                      ability: character.atributes.constitution,
+                    _showEditPopup(
+                      ability: character.abilityScores.constitution,
                       text: 'Constituição',
                     );
                   },
                   child: LabelSavingThrowWdgt(
                     title: 'CON',
-                    proficiency: character.atributes.constitution.proficiency,
+                    proficiency:
+                        character.abilityScores.constitution.proficiency,
                     value: character.defineProficiencyValue(
-                      modifier: character.atributes.constitution.modifier,
-                      proficiency: character.atributes.constitution.proficiency,
+                      modifier: character.abilityScores.constitution.modifier,
+                      proficiency:
+                          character.abilityScores.constitution.proficiency,
                     ),
                   ),
                 ),
@@ -84,49 +87,51 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
               children: [
                 GestureDetector(
                   onLongPressStart: (details) {
-                    _showPopupSavingThrowEdit(
-                      ability: character.atributes.intelligence,
+                    _showEditPopup(
+                      ability: character.abilityScores.intelligence,
                       text: 'Inteligência',
                     );
                   },
                   child: LabelSavingThrowWdgt(
                     title: 'INT',
-                    proficiency: character.atributes.intelligence.proficiency,
+                    proficiency:
+                        character.abilityScores.intelligence.proficiency,
                     value: character.defineProficiencyValue(
-                      modifier: character.atributes.intelligence.modifier,
-                      proficiency: character.atributes.intelligence.proficiency,
+                      modifier: character.abilityScores.intelligence.modifier,
+                      proficiency:
+                          character.abilityScores.intelligence.proficiency,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
-                    _showPopupSavingThrowEdit(
-                      ability: character.atributes.wisdom,
+                    _showEditPopup(
+                      ability: character.abilityScores.wisdom,
                       text: 'Sabedoria',
                     );
                   },
                   child: LabelSavingThrowWdgt(
                     title: 'SAB',
-                    proficiency: character.atributes.wisdom.proficiency,
+                    proficiency: character.abilityScores.wisdom.proficiency,
                     value: character.defineProficiencyValue(
-                      modifier: character.atributes.wisdom.modifier,
-                      proficiency: character.atributes.wisdom.proficiency,
+                      modifier: character.abilityScores.wisdom.modifier,
+                      proficiency: character.abilityScores.wisdom.proficiency,
                     ),
                   ),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
-                    _showPopupSavingThrowEdit(
-                      ability: character.atributes.charisma,
+                    _showEditPopup(
+                      ability: character.abilityScores.charisma,
                       text: 'Carisma',
                     );
                   },
                   child: LabelSavingThrowWdgt(
                     title: 'CAR',
-                    proficiency: character.atributes.charisma.proficiency,
+                    proficiency: character.abilityScores.charisma.proficiency,
                     value: character.defineProficiencyValue(
-                      modifier: character.atributes.charisma.modifier,
-                      proficiency: character.atributes.charisma.proficiency,
+                      modifier: character.abilityScores.charisma.modifier,
+                      proficiency: character.abilityScores.charisma.proficiency,
                     ),
                   ),
                 ),
@@ -138,8 +143,7 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
     );
   }
 
-  void _showPopupSavingThrowEdit(
-      {required String text, required AbilityModel ability}) {
+  void _showEditPopup({required String text, required AbilityModel ability}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -162,12 +166,12 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildProficiencyBtn(
-                      text: 'Normal',
+                      text: 'Não'.toUpperCase(),
                       proficiency: ProficiencyType.normal,
                       ability: ability,
                     ),
                     _buildProficiencyBtn(
-                      text: 'Proficiênte',
+                      text: 'Sim'.toUpperCase(),
                       proficiency: ProficiencyType.proficient,
                       ability: ability,
                     ),

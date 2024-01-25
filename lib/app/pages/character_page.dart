@@ -138,7 +138,8 @@ class _CharacterPageState extends State<CharacterPage> {
                     _buildProperty(
                       icon: Icons.sports_kabaddi,
                       title: 'Bônus de Iniciativa',
-                      text: '+${widget.character.atributes.dexterity.modifier}',
+                      text:
+                          '+${widget.character.abilityScores.dexterity.modifier}',
                     ),
                   ],
                 ),

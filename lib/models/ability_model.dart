@@ -1,4 +1,5 @@
-import 'package:keepershield_rpg/models/_lib_model.dart';
+import 'package:keepershield_rpg/models/definitions.dart';
+import 'package:keepershield_rpg/models/skill_model.dart';
 
 abstract class AbilityModel {
   int value;
@@ -13,33 +14,43 @@ abstract class AbilityModel {
 }
 
 class Strength extends AbilityModel {
-  ProficiencyType athletics;
+  late Athletics athletics;
 
   Strength({
     int? value,
     ProficiencyType? proficiency,
-    this.athletics = ProficiencyType.normal,
+    ProficiencyType? athleticsProficiency,
   }) : super(
           value: value ?? 10,
           proficiency: proficiency ?? ProficiencyType.normal,
-        );
+        ) {
+    athletics =
+        Athletics(proficiency: athleticsProficiency ?? ProficiencyType.normal);
+  }
 }
 
 class Dexterity extends AbilityModel {
-  ProficiencyType acrobatics;
-  ProficiencyType sleightOfHands;
-  ProficiencyType stealth;
+  late Acrobatics acrobatics;
+  late SleightOfHand sleightOfHand;
+  late Stealth stealth;
 
   Dexterity({
     int? value,
     ProficiencyType? proficiency,
-    this.acrobatics = ProficiencyType.normal,
-    this.sleightOfHands = ProficiencyType.normal,
-    this.stealth = ProficiencyType.normal,
+    ProficiencyType? acrobaticsProficiency,
+    ProficiencyType? sleightOfHandProficiency,
+    ProficiencyType? stealthProficiency,
   }) : super(
           value: value ?? 10,
           proficiency: proficiency ?? ProficiencyType.normal,
-        );
+        ) {
+    acrobatics = Acrobatics(
+        proficiency: acrobaticsProficiency ?? ProficiencyType.normal);
+    sleightOfHand = SleightOfHand(
+        proficiency: sleightOfHandProficiency ?? ProficiencyType.normal);
+    stealth =
+        Stealth(proficiency: stealthProficiency ?? ProficiencyType.normal);
+  }
 }
 
 class Constitution extends AbilityModel {
@@ -53,62 +64,91 @@ class Constitution extends AbilityModel {
 }
 
 class Intelligence extends AbilityModel {
-  ProficiencyType arcana;
-  ProficiencyType history;
-  ProficiencyType investigation;
-  ProficiencyType nature;
-  ProficiencyType religion;
+  late Arcana arcana;
+  late History history;
+  late Investigation investigation;
+  late Nature nature;
+  late Religion religion;
 
   Intelligence({
     int? value,
     ProficiencyType? proficiency,
-    this.arcana = ProficiencyType.normal,
-    this.history = ProficiencyType.normal,
-    this.investigation = ProficiencyType.normal,
-    this.nature = ProficiencyType.normal,
-    this.religion = ProficiencyType.normal,
+    ProficiencyType? arcanaProficiency,
+    ProficiencyType? historyProficiency,
+    ProficiencyType? investigationProficiency,
+    ProficiencyType? natureProficiency,
+    ProficiencyType? religionProficiency,
   }) : super(
           value: value ?? 10,
           proficiency: proficiency ?? ProficiencyType.normal,
-        );
+        ) {
+    arcana = Arcana(proficiency: arcanaProficiency ?? ProficiencyType.normal);
+    history =
+        History(proficiency: historyProficiency ?? ProficiencyType.normal);
+    investigation = Investigation(
+        proficiency: investigationProficiency ?? ProficiencyType.normal);
+    nature = Nature(proficiency: natureProficiency ?? ProficiencyType.normal);
+    religion =
+        Religion(proficiency: religionProficiency ?? ProficiencyType.normal);
+  }
 }
 
 class Wisdom extends AbilityModel {
-  ProficiencyType animalHandling;
-  ProficiencyType insight;
-  ProficiencyType medicine;
-  ProficiencyType perception;
-  ProficiencyType survival;
+  late AnimalHandling animalHandling;
+  late Insight insight;
+  late Medicine medicine;
+  late Perception perception;
+  late Survival survival;
 
   Wisdom({
     int? value,
     ProficiencyType? proficiency,
-    this.animalHandling = ProficiencyType.normal,
-    this.insight = ProficiencyType.normal,
-    this.medicine = ProficiencyType.normal,
-    this.perception = ProficiencyType.normal,
-    this.survival = ProficiencyType.normal,
+    ProficiencyType? animalHandlingProficiency,
+    ProficiencyType? insightProficiency,
+    ProficiencyType? medicineProficiency,
+    ProficiencyType? perceptionProficiency,
+    ProficiencyType? survivalProficiency,
   }) : super(
           value: value ?? 10,
           proficiency: proficiency ?? ProficiencyType.normal,
-        );
+        ) {
+    animalHandling = AnimalHandling(
+        proficiency: animalHandlingProficiency ?? ProficiencyType.normal);
+    insight =
+        Insight(proficiency: insightProficiency ?? ProficiencyType.normal);
+    medicine =
+        Medicine(proficiency: medicineProficiency ?? ProficiencyType.normal);
+    perception = Perception(
+        proficiency: perceptionProficiency ?? ProficiencyType.normal);
+    survival =
+        Survival(proficiency: survivalProficiency ?? ProficiencyType.normal);
+  }
 }
 
 class Charisma extends AbilityModel {
-  ProficiencyType deception;
-  ProficiencyType intimidation;
-  ProficiencyType performance;
-  ProficiencyType persuasion;
+  late Deception deception;
+  late Intimidation intimidation;
+  late Performance performance;
+  late Persuasion persuasion;
 
   Charisma({
     int? value,
     ProficiencyType? proficiency,
-    this.deception = ProficiencyType.normal,
-    this.intimidation = ProficiencyType.normal,
-    this.performance = ProficiencyType.normal,
-    this.persuasion = ProficiencyType.normal,
+    ProficiencyType? deceptionProficiency,
+    ProficiencyType? intimidationProficiency,
+    ProficiencyType? performanceProficiency,
+    ProficiencyType? persuasionProficiency,
   }) : super(
           value: value ?? 10,
           proficiency: proficiency ?? ProficiencyType.normal,
-        );
+        ) {
+    deception =
+        Deception(proficiency: deceptionProficiency ?? ProficiencyType.normal);
+    intimidation = Intimidation(
+        proficiency: intimidationProficiency ?? ProficiencyType.normal);
+    performance = Performance(
+        proficiency: performanceProficiency ?? ProficiencyType.normal);
+    persuasion = Persuasion(
+        proficiency: persuasionProficiency ?? ProficiencyType.normal);
+  }
 }
