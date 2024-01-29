@@ -17,7 +17,7 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Consumer<CharacterViewModel>(builder: (context, character, child) {
+    return Consumer<CharacterViewModel>(builder: (context, character, w) {
       return Column(children: [
         const CustomDividerWdgt(title: 'Valores de Atributos'),
         Padding(

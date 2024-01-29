@@ -143,11 +143,11 @@ class CharactersRepository extends ChangeNotifier {
 
   int proficiencyTypeToInt(ProficiencyType proficiency) {
     switch (proficiency) {
-      case ProficiencyType.normal:
+      case ProficiencyType.NonProficient:
         return 0;
-      case ProficiencyType.proficient:
+      case ProficiencyType.Proficient:
         return 1;
-      case ProficiencyType.expert:
+      case ProficiencyType.Expert:
         return 2;
     }
   }
@@ -155,11 +155,11 @@ class CharactersRepository extends ChangeNotifier {
   ProficiencyType _intToProficiencyType(int value) {
     switch (value) {
       case 0:
-        return ProficiencyType.normal;
+        return ProficiencyType.NonProficient;
       case 1:
-        return ProficiencyType.proficient;
+        return ProficiencyType.Proficient;
       case 2:
-        return ProficiencyType.expert;
+        return ProficiencyType.Expert;
       default:
         throw ArgumentError('Valor de ProficiencyType desconhecido: $value');
     }
@@ -238,6 +238,8 @@ class CharactersRepository extends ChangeNotifier {
       },
     };
 
+    character.id.trim() != '' ? character.id = auth.defineId() : null;
+
     await db
         .collection('users/${auth.user!.uid}/characters')
         .doc(character.id)
@@ -252,6 +254,7 @@ class CharactersRepository extends ChangeNotifier {
       'speed': character.speed,
     });
 
+    _characters.removeWhere((char) => char.id == character.id);
     _characters.add(character);
 
     notifyListeners();

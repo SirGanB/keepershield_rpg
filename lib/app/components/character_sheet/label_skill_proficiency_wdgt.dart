@@ -25,7 +25,7 @@ class SkillProficiencyWdgt extends StatelessWidget {
               _defineIcon(),
               size: 10,
               color:
-                  proficiency == ProficiencyType.expert ? Colors.amber : null,
+                  proficiency == ProficiencyType.Expert ? Colors.amber : null,
             ),
           ),
           Expanded(
@@ -35,7 +35,7 @@ class SkillProficiencyWdgt extends StatelessWidget {
                 title.toUpperCase(),
                 style: TextStyle(
                   fontSize: 9,
-                  color: proficiency == ProficiencyType.expert
+                  color: proficiency == ProficiencyType.Expert
                       ? Colors.amber
                       : null,
                 ),
@@ -49,7 +49,7 @@ class SkillProficiencyWdgt extends StatelessWidget {
               height: 15,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: proficiency == ProficiencyType.expert
+                  color: proficiency == ProficiencyType.Expert
                       ? Colors.amber
                       : Theme.of(context).colorScheme.outline,
                 ),
@@ -60,7 +60,7 @@ class SkillProficiencyWdgt extends StatelessWidget {
                   value > 0 ? '+$value' : '$value',
                   style: TextStyle(
                     fontSize: 8,
-                    color: proficiency == ProficiencyType.expert
+                    color: proficiency == ProficiencyType.Expert
                         ? Colors.amber
                         : Theme.of(context).colorScheme.outline,
                   ),
@@ -74,9 +74,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
   }
 
   IconData? _defineIcon() {
-    if (proficiency == ProficiencyType.normal) {
+    if (proficiency == ProficiencyType.NonProficient) {
       return Icons.circle_outlined;
-    } else if (proficiency == ProficiencyType.proficient) {
+    } else if (proficiency == ProficiencyType.Proficient) {
       return Icons.circle;
     } else {
       return Icons.star;

@@ -167,12 +167,12 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
                   children: [
                     _buildProficiencyBtn(
                       text: 'Não'.toUpperCase(),
-                      proficiency: ProficiencyType.normal,
+                      proficiency: ProficiencyType.NonProficient,
                       ability: ability,
                     ),
                     _buildProficiencyBtn(
                       text: 'Sim'.toUpperCase(),
-                      proficiency: ProficiencyType.proficient,
+                      proficiency: ProficiencyType.Proficient,
                       ability: ability,
                     ),
                   ],

@@ -22,8 +22,9 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
         return Column(
           children: [
             const CustomDividerWdgt(title: 'Perícias'),
-            SizedBox(
-              height: 415,
+            Container(
+              height: 400,
+              margin: EdgeInsets.only(bottom: 25),
               child: Row(children: [
                 Expanded(
                   child: Column(
@@ -404,11 +405,13 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
           alignment: Alignment.centerLeft,
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
-            child: Text(title.toUpperCase(),
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 12,
-                )),
+            child: Text(
+              title.toUpperCase(),
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
           ),
         ),
         _buildProfiencyDivider(),
@@ -453,17 +456,17 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                         _buildProficiencyBtn(
                           text: 'Inapto',
                           skill: skill,
-                          proficiency: ProficiencyType.normal,
+                          proficiency: ProficiencyType.NonProficient,
                         ),
                         _buildProficiencyBtn(
                           text: 'Proficiênte',
                           skill: skill,
-                          proficiency: ProficiencyType.proficient,
+                          proficiency: ProficiencyType.Proficient,
                         ),
                         _buildProficiencyBtn(
                           text: 'Especialista',
                           skill: skill,
-                          proficiency: ProficiencyType.expert,
+                          proficiency: ProficiencyType.Expert,
                         ),
                       ],
                     ),

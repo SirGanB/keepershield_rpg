@@ -3,7 +3,6 @@ import 'package:keepershield_rpg/app/components/_lib_components.dart';
 import 'package:keepershield_rpg/app/pages/character_page.dart';
 import 'package:keepershield_rpg/models/character_model.dart';
 import 'package:keepershield_rpg/repository/characters_repository.dart';
-import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -280,11 +279,8 @@ class _MenuCharacterPageState extends State<MenuCharacterPage> {
   }
 
   void _createCharacter() {
-    final auth = context.read<AuthService>();
-
     characters.create(
       character: CharacterModel(
-        id: auth.defineId(),
         name: _nameController.text,
         race: _raceController.text,
         classes: [

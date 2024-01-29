@@ -11,9 +11,9 @@ class CharacterModel {
   late AbilityScoresCollection abilityScores;
 
   CharacterModel({
-    required this.id,
-    required this.name,
-    required this.race,
+    this.id = '',
+    this.name = '',
+    this.race = '',
     this.currentHealth = 1,
     this.maxHealth = 1,
     this.speed = 9,

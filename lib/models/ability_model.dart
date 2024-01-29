@@ -22,10 +22,10 @@ class Strength extends AbilityModel {
     ProficiencyType? athleticsProficiency,
   }) : super(
           value: value ?? 10,
-          proficiency: proficiency ?? ProficiencyType.normal,
+          proficiency: proficiency ?? ProficiencyType.NonProficient,
         ) {
-    athletics =
-        Athletics(proficiency: athleticsProficiency ?? ProficiencyType.normal);
+    athletics = Athletics(
+        proficiency: athleticsProficiency ?? ProficiencyType.NonProficient);
   }
 }
 
@@ -42,14 +42,14 @@ class Dexterity extends AbilityModel {
     ProficiencyType? stealthProficiency,
   }) : super(
           value: value ?? 10,
-          proficiency: proficiency ?? ProficiencyType.normal,
+          proficiency: proficiency ?? ProficiencyType.NonProficient,
         ) {
     acrobatics = Acrobatics(
-        proficiency: acrobaticsProficiency ?? ProficiencyType.normal);
+        proficiency: acrobaticsProficiency ?? ProficiencyType.NonProficient);
     sleightOfHand = SleightOfHand(
-        proficiency: sleightOfHandProficiency ?? ProficiencyType.normal);
-    stealth =
-        Stealth(proficiency: stealthProficiency ?? ProficiencyType.normal);
+        proficiency: sleightOfHandProficiency ?? ProficiencyType.NonProficient);
+    stealth = Stealth(
+        proficiency: stealthProficiency ?? ProficiencyType.NonProficient);
   }
 }
 
@@ -59,7 +59,7 @@ class Constitution extends AbilityModel {
     ProficiencyType? proficiency,
   }) : super(
           value: value ?? 10,
-          proficiency: proficiency ?? ProficiencyType.normal,
+          proficiency: proficiency ?? ProficiencyType.NonProficient,
         );
 }
 
@@ -80,16 +80,18 @@ class Intelligence extends AbilityModel {
     ProficiencyType? religionProficiency,
   }) : super(
           value: value ?? 10,
-          proficiency: proficiency ?? ProficiencyType.normal,
+          proficiency: proficiency ?? ProficiencyType.NonProficient,
         ) {
-    arcana = Arcana(proficiency: arcanaProficiency ?? ProficiencyType.normal);
-    history =
-        History(proficiency: historyProficiency ?? ProficiencyType.normal);
+    arcana =
+        Arcana(proficiency: arcanaProficiency ?? ProficiencyType.NonProficient);
+    history = History(
+        proficiency: historyProficiency ?? ProficiencyType.NonProficient);
     investigation = Investigation(
-        proficiency: investigationProficiency ?? ProficiencyType.normal);
-    nature = Nature(proficiency: natureProficiency ?? ProficiencyType.normal);
-    religion =
-        Religion(proficiency: religionProficiency ?? ProficiencyType.normal);
+        proficiency: investigationProficiency ?? ProficiencyType.NonProficient);
+    nature =
+        Nature(proficiency: natureProficiency ?? ProficiencyType.NonProficient);
+    religion = Religion(
+        proficiency: religionProficiency ?? ProficiencyType.NonProficient);
   }
 }
 
@@ -110,18 +112,19 @@ class Wisdom extends AbilityModel {
     ProficiencyType? survivalProficiency,
   }) : super(
           value: value ?? 10,
-          proficiency: proficiency ?? ProficiencyType.normal,
+          proficiency: proficiency ?? ProficiencyType.NonProficient,
         ) {
     animalHandling = AnimalHandling(
-        proficiency: animalHandlingProficiency ?? ProficiencyType.normal);
-    insight =
-        Insight(proficiency: insightProficiency ?? ProficiencyType.normal);
-    medicine =
-        Medicine(proficiency: medicineProficiency ?? ProficiencyType.normal);
+        proficiency:
+            animalHandlingProficiency ?? ProficiencyType.NonProficient);
+    insight = Insight(
+        proficiency: insightProficiency ?? ProficiencyType.NonProficient);
+    medicine = Medicine(
+        proficiency: medicineProficiency ?? ProficiencyType.NonProficient);
     perception = Perception(
-        proficiency: perceptionProficiency ?? ProficiencyType.normal);
-    survival =
-        Survival(proficiency: survivalProficiency ?? ProficiencyType.normal);
+        proficiency: perceptionProficiency ?? ProficiencyType.NonProficient);
+    survival = Survival(
+        proficiency: survivalProficiency ?? ProficiencyType.NonProficient);
   }
 }
 
@@ -140,15 +143,15 @@ class Charisma extends AbilityModel {
     ProficiencyType? persuasionProficiency,
   }) : super(
           value: value ?? 10,
-          proficiency: proficiency ?? ProficiencyType.normal,
+          proficiency: proficiency ?? ProficiencyType.NonProficient,
         ) {
-    deception =
-        Deception(proficiency: deceptionProficiency ?? ProficiencyType.normal);
+    deception = Deception(
+        proficiency: deceptionProficiency ?? ProficiencyType.NonProficient);
     intimidation = Intimidation(
-        proficiency: intimidationProficiency ?? ProficiencyType.normal);
+        proficiency: intimidationProficiency ?? ProficiencyType.NonProficient);
     performance = Performance(
-        proficiency: performanceProficiency ?? ProficiencyType.normal);
+        proficiency: performanceProficiency ?? ProficiencyType.NonProficient);
     persuasion = Persuasion(
-        proficiency: persuasionProficiency ?? ProficiencyType.normal);
+        proficiency: persuasionProficiency ?? ProficiencyType.NonProficient);
   }
 }

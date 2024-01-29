@@ -15,7 +15,7 @@ class LabelSavingThrowWdgt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool _proficiency = false;
-    proficiency == ProficiencyType.normal
+    proficiency == ProficiencyType.NonProficient
         ? _proficiency = false
         : _proficiency = true;
 

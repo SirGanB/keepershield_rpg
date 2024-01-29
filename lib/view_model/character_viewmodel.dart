@@ -38,9 +38,9 @@ class CharacterViewModel extends ChangeNotifier {
     required int modifier,
     required ProficiencyType proficiency,
   }) {
-    if (proficiency == ProficiencyType.normal)
+    if (proficiency == ProficiencyType.NonProficient)
       return modifier;
-    else if (proficiency == ProficiencyType.proficient)
+    else if (proficiency == ProficiencyType.Proficient)
       return modifier + proficiencyBonus;
     else
       return modifier + (proficiencyBonus * 2);
