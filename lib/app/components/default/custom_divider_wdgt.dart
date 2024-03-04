@@ -2,32 +2,60 @@ import 'package:flutter/material.dart';
 
 class CustomDividerWdgt extends StatelessWidget {
   final String? title;
-  const CustomDividerWdgt({super.key, this.title});
+  final VoidCallback? onPressed;
+  const CustomDividerWdgt({super.key, this.title, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      buildDivider(context: context, flex: 1),
-      if (title?.isNotEmpty ?? false) customTitle(),
-      buildDivider(context: context, flex: 3),
-    ]);
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Divider(),
+              ),
+              if (title != null) _buildTitle(context),
+              Expanded(
+                flex: 15,
+                child: Divider(),
+              ),
+              if (onPressed != null) _buildButton(context, onPressed),
+              Expanded(
+                child: Divider(),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
-  Widget customTitle() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Text(
-          title!.toUpperCase(),
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+  Container _buildButton(BuildContext context, VoidCallback? onPressed) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      constraints: BoxConstraints(maxWidth: 50),
+      child: TextButton(
+        onPressed: onPressed,
+        child: Icon(
+          Icons.add,
+          size: 20,
+          color: Theme.of(context).colorScheme.outline,
         ),
-      );
+      ),
+    );
+  }
 
-  Widget buildDivider({required flex, required context}) {
-    return Expanded(
-      flex: flex,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25),
-        child: Container(
-          height: 2,
+  Padding _buildTitle(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Text(
+        title!.toUpperCase(),
+        style: TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
           color: Theme.of(context).colorScheme.outline,
         ),
       ),

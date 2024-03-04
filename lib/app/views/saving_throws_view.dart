@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/components/character_sheet/saving_throw_wdgt.dart';
+import 'package:keepershield_rpg/app/components/character_sheet/label_saving_throw_wdgt.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
 import 'package:keepershield_rpg/models/ability_model.dart';
 import 'package:keepershield_rpg/models/definitions.dart';

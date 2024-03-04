@@ -24,8 +24,11 @@ class SkillProficiencyWdgt extends StatelessWidget {
             child: Icon(
               _defineIcon(),
               size: 10,
-              color:
-                  proficiency == ProficiencyType.Expert ? Colors.amber : null,
+              color: proficiency == ProficiencyType.NonProficient
+                  ? Theme.of(context).colorScheme.outline
+                  : proficiency == ProficiencyType.Proficient
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.amber,
             ),
           ),
           Expanded(
@@ -35,9 +38,11 @@ class SkillProficiencyWdgt extends StatelessWidget {
                 title.toUpperCase(),
                 style: TextStyle(
                   fontSize: 9,
-                  color: proficiency == ProficiencyType.Expert
-                      ? Colors.amber
-                      : null,
+                  color: proficiency == ProficiencyType.NonProficient
+                      ? Theme.of(context).colorScheme.outline
+                      : proficiency == ProficiencyType.Proficient
+                          ? Theme.of(context).colorScheme.primary
+                          : Colors.amber,
                 ),
               ),
             ),
@@ -49,9 +54,11 @@ class SkillProficiencyWdgt extends StatelessWidget {
               height: 15,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: proficiency == ProficiencyType.Expert
-                      ? Colors.amber
-                      : Theme.of(context).colorScheme.outline,
+                  color: proficiency == ProficiencyType.NonProficient
+                      ? Theme.of(context).colorScheme.outline
+                      : proficiency == ProficiencyType.Proficient
+                          ? Theme.of(context).colorScheme.primary
+                          : Colors.amber,
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -60,9 +67,11 @@ class SkillProficiencyWdgt extends StatelessWidget {
                   value > 0 ? '+$value' : '$value',
                   style: TextStyle(
                     fontSize: 8,
-                    color: proficiency == ProficiencyType.Expert
-                        ? Colors.amber
-                        : Theme.of(context).colorScheme.outline,
+                    color: proficiency == ProficiencyType.NonProficient
+                        ? Theme.of(context).colorScheme.outline
+                        : proficiency == ProficiencyType.Proficient
+                            ? Theme.of(context).colorScheme.primary
+                            : Colors.amber,
                   ),
                 ),
               ),

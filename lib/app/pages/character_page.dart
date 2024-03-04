@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keepershield_rpg/app/components/_lib_components.dart';
 import 'package:provider/provider.dart';
 import 'package:keepershield_rpg/app/views/ability_scores_view.dart';
 import 'package:keepershield_rpg/app/views/character_history_view.dart';
@@ -35,7 +36,7 @@ class _CharacterPageState extends State<CharacterPage> {
                     children: [
                       if (_screenIndex == 0) _buildScoresView(),
                       if (_screenIndex == 1) _buildHistoryView(),
-                      if (_screenIndex == 2) Text('View 3'),
+                      if (_screenIndex == 2) _buildArmoryView(),
                       if (_screenIndex == 3) Text('View 4'),
                     ],
                   ),
@@ -63,8 +64,8 @@ class _CharacterPageState extends State<CharacterPage> {
               label: 'História',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.new_releases),
-              label: 'View 3',
+              icon: Icon(Icons.shopping_bag),
+              label: 'Arsenal',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.new_releases),
@@ -91,6 +92,12 @@ class _CharacterPageState extends State<CharacterPage> {
   _buildHistoryView() {
     return SingleChildScrollView(
       child: CharacterHistoryView(),
+    );
+  }
+
+  Widget _buildArmoryView() {
+    return SingleChildScrollView(
+      child: CharacterArmoryView(),
     );
   }
 }

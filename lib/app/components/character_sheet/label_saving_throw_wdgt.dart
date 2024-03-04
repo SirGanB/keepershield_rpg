@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/models/definitions.dart';
 
 class LabelSavingThrowWdgt extends StatelessWidget {
-  final String title;
   final ProficiencyType proficiency;
+  final String title;
   final int value;
 
   LabelSavingThrowWdgt({
-    required this.title,
     required this.proficiency,
+    required this.title,
     required this.value,
   });
 

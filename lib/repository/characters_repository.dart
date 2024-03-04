@@ -238,7 +238,7 @@ class CharactersRepository extends ChangeNotifier {
       },
     };
 
-    character.id.trim() != '' ? character.id = auth.defineId() : null;
+    if (character.id.trim() == '') character.id = auth.defineId();
 
     await db
         .collection('users/${auth.user!.uid}/characters')

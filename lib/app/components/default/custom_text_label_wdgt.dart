@@ -27,7 +27,7 @@ class CustomTextLabelWdgt extends StatelessWidget {
 
   Widget _buildTextLabel(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: EdgeInsets.all(8),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

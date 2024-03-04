@@ -18,12 +18,12 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
   @override
   Widget build(BuildContext context) {
     return Consumer<CharacterViewModel>(
-      builder: (context, character, child) {
+      builder: (context, character, w) {
         return Column(
           children: [
             const CustomDividerWdgt(title: 'Perícias'),
             Container(
-              height: 400,
+              height: 450,
               margin: EdgeInsets.only(bottom: 25),
               child: Row(children: [
                 Expanded(
@@ -206,8 +206,7 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                   ),
                 ),
                 VerticalDivider(
-                  thickness: 2,
-                  width: 2,
+                  width: 8,
                   color: Theme.of(context).colorScheme.outline,
                 ),
                 Expanded(
@@ -237,12 +236,12 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                       GestureDetector(
                         onLongPressStart: (details) {
                           _showPopupSkillEdit(
-                            text: 'Lidar com Animais',
+                            text: 'Adestrar Animais',
                             skill: AnimalHandling(),
                           );
                         },
                         child: SkillProficiencyWdgt(
-                          title: 'Lidar com Animais',
+                          title: 'Adestrar Animais',
                           proficiency: widget.character.abilityScores.wisdom
                               .animalHandling.proficiency,
                           value: widget.character.defineProficiencyValue(
@@ -399,33 +398,25 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
   }
 
   Widget _buildTitleProficiency({required String title}) {
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              title.toUpperCase(),
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 12,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: Text(
+                title.toUpperCase(),
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 10,
+                ),
               ),
             ),
           ),
-        ),
-        _buildProfiencyDivider(),
-      ],
-    );
-  }
-
-  Widget _buildProfiencyDivider() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 4, 0, 8),
-      child: Divider(
-        height: 2,
-        thickness: 1.5,
-        color: Theme.of(context).colorScheme.outline,
+          Divider(),
+        ],
       ),
     );
   }
@@ -440,7 +431,7 @@ class _SkillsProficencyViewState extends State<SkillsProficencyView> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: Text(
                         'Qual a proficiência de ${widget.character.name} em $text?',
                         textAlign: TextAlign.center,
