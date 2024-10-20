@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/character_sheet/label_ability_scores_wdgt.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
-import 'package:keepershield_rpg/models/ability_model.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class AbilityScoresView extends StatefulWidget {
-  final CharacterViewModel character;
-  const AbilityScoresView({super.key, required this.character});
+  final CharacterViewModel char;
+  const AbilityScoresView({super.key, required this.char});
 
   @override
   State<AbilityScoresView> createState() => _AbilityScoresViewState();
@@ -15,9 +14,10 @@ class AbilityScoresView extends StatefulWidget {
 
 class _AbilityScoresViewState extends State<AbilityScoresView> {
   TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<CharacterViewModel>(builder: (context, character, w) {
+    return Consumer<CharacterViewModel>(builder: (context, char, w) {
       return Column(children: [
         const CustomDividerWdgt(title: 'Valores de Atributos'),
         Padding(
@@ -27,38 +27,30 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
             children: [
               GestureDetector(
                 onLongPressStart: (details) {
-                  _showEditPopup(
-                    labelText: 'FOR',
-                    ability: Strength(),
-                  );
+                  _showEditPopup();
                 },
                 child: LabelAbilityScores(
-                  title: 'Força',
-                  ability: widget.character.abilityScores.strength,
+                  title: 'Atributo',
+                  ability: char.strength,
+                ),
+              ),
+              GestureDetector(
+                onLongPressStart: (details) {
+                  _showEditPopup(                  );
+                },
+                child: LabelAbilityScores(
+                  title: 'Atributo',
+                  ability: char.strength,
                 ),
               ),
               GestureDetector(
                 onLongPressStart: (details) {
                   _showEditPopup(
-                    labelText: 'DEX',
-                    ability: Dexterity(),
                   );
                 },
                 child: LabelAbilityScores(
-                  title: 'Destreza',
-                  ability: widget.character.abilityScores.dexterity,
-                ),
-              ),
-              GestureDetector(
-                onLongPressStart: (details) {
-                  _showEditPopup(
-                    labelText: 'CON',
-                    ability: Constitution(),
-                  );
-                },
-                child: LabelAbilityScores(
-                  title: 'Constituição',
-                  ability: widget.character.abilityScores.constitution,
+                  title: 'Atributo',
+                  ability: char.strength,
                 ),
               ),
             ],
@@ -70,37 +62,31 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
             GestureDetector(
               onLongPressStart: (details) {
                 _showEditPopup(
-                  labelText: 'INT',
-                  ability: Intelligence(),
                 );
               },
               child: LabelAbilityScores(
-                title: 'Inteligência',
-                ability: widget.character.abilityScores.intelligence,
+                title: 'Atributo',
+                ability: char.strength,
               ),
             ),
             GestureDetector(
               onLongPressStart: (details) {
                 _showEditPopup(
-                  labelText: 'SAB',
-                  ability: Wisdom(),
                 );
               },
               child: LabelAbilityScores(
-                title: 'Sabedoria',
-                ability: widget.character.abilityScores.wisdom,
+                title: 'Atributo',
+                ability: char.strength,
               ),
             ),
             GestureDetector(
               onLongPressStart: (details) {
                 _showEditPopup(
-                  labelText: 'CAR',
-                  ability: Charisma(),
                 );
               },
               child: LabelAbilityScores(
-                title: 'Carisma',
-                ability: widget.character.abilityScores.charisma,
+                title: 'Atributo',
+                ability: char.strength,
               ),
             ),
           ],
@@ -109,7 +95,7 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
     });
   }
 
-  _showEditPopup({required AbilityModel ability, required String labelText}) {
+  _showEditPopup() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -134,7 +120,6 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        labelText: labelText,
                       ),
                       controller: controller,
                     ),
@@ -144,10 +129,10 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      widget.character.updateAbilityScore(
-                        value: int.parse(controller.text),
-                        ability: ability,
-                      );
+                      //widget.char.updateAbilityScore(
+                      //  value: int.parse(controller.text),
+                      //  ability: ability,
+                      //);
 
                       Navigator.pop(context);
                       controller.clear();

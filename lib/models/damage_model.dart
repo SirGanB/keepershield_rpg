@@ -17,13 +17,13 @@ class DamageModel {
   static String defineAttackType({required AttackType attackType}) {
     String text = '';
     switch (attackType) {
-      case AttackType.MeleeWeapon:
+      case AttackType.meleeWeapon:
         return text = 'Melee Weapon Attack';
-      case AttackType.RangeWeapon:
+      case AttackType.rangeWeapon:
         return text = 'Ranged Weapon Attack';
-      case AttackType.MeleeSpell:
+      case AttackType.meleeSpell:
         return text = 'Melee Spell Attack';
-      case AttackType.RangeSpell:
+      case AttackType.rangeSpell:
         return text = 'Ranged Spell Attack';
       default:
         'AttackType not found';

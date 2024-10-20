@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/app/views/auth_check_view.dart';
+import 'package:keepershield_rpg/app/pages/menu_character_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'KeeperShield RPG',
         theme: ThemeData.dark(),
-        home: const AuthCheckView(),
+        home: MenuCharacterPage(),
         debugShowCheckedModeBanner: false,
       ),
     );

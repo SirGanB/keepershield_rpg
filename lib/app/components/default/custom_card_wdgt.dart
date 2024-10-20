@@ -5,14 +5,16 @@ class CustomCardWdgt extends StatelessWidget {
   final String title;
   final String subtitle;
   final VoidCallback? onPressed;
+  final VoidCallback? onTap;
 
   const CustomCardWdgt({
-    Key? key,
+    super.key,
     this.icon,
     required this.title,
     required this.subtitle,
     this.onPressed,
-  }) : super(key: key);
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,34 +24,31 @@ class CustomCardWdgt extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          child: SizedBox(
-            width: 50,
-            height: 50,
-            child: Icon(
-              icon ?? Icons.account_circle,
-              size: 45,
-            ),
+          child: Icon(
+            icon ?? Icons.account_circle,
+            size: 30,
           ),
         ),
         title: Text(
           title.toUpperCase(),
           style: const TextStyle(
-            fontSize: 10,
+            fontSize: 12,
             fontWeight: FontWeight.bold,
           ),
         ),
         subtitle: Text(
           subtitle,
           textAlign: TextAlign.justify,
-          style: const TextStyle(fontSize: 10),
+          style: const TextStyle(fontSize: 8),
         ),
         trailing: Container(
           constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),
-          child: TextButton(
+          child: IconButton(
             onPressed: onPressed,
-            child: const Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ),
+        onTap: onTap,
       ),
     );
   }

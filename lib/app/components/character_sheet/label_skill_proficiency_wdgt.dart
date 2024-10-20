@@ -6,7 +6,7 @@ class SkillProficiencyWdgt extends StatelessWidget {
   final ProficiencyType proficiency;
   final int value;
 
-  const SkillProficiencyWdgt({
+  const SkillProficiencyWdgt({super.key, 
     required this.title,
     required this.proficiency,
     required this.value,
@@ -24,9 +24,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
             child: Icon(
               _defineIcon(),
               size: 10,
-              color: proficiency == ProficiencyType.NonProficient
+              color: proficiency == ProficiencyType.nonProficient
                   ? Theme.of(context).colorScheme.outline
-                  : proficiency == ProficiencyType.Proficient
+                  : proficiency == ProficiencyType.proficient
                       ? Theme.of(context).colorScheme.primary
                       : Colors.amber,
             ),
@@ -38,9 +38,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
                 title.toUpperCase(),
                 style: TextStyle(
                   fontSize: 9,
-                  color: proficiency == ProficiencyType.NonProficient
+                  color: proficiency == ProficiencyType.nonProficient
                       ? Theme.of(context).colorScheme.outline
-                      : proficiency == ProficiencyType.Proficient
+                      : proficiency == ProficiencyType.proficient
                           ? Theme.of(context).colorScheme.primary
                           : Colors.amber,
                 ),
@@ -54,9 +54,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
               height: 15,
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: proficiency == ProficiencyType.NonProficient
+                  color: proficiency == ProficiencyType.nonProficient
                       ? Theme.of(context).colorScheme.outline
-                      : proficiency == ProficiencyType.Proficient
+                      : proficiency == ProficiencyType.proficient
                           ? Theme.of(context).colorScheme.primary
                           : Colors.amber,
                 ),
@@ -67,9 +67,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
                   value > 0 ? '+$value' : '$value',
                   style: TextStyle(
                     fontSize: 8,
-                    color: proficiency == ProficiencyType.NonProficient
+                    color: proficiency == ProficiencyType.nonProficient
                         ? Theme.of(context).colorScheme.outline
-                        : proficiency == ProficiencyType.Proficient
+                        : proficiency == ProficiencyType.proficient
                             ? Theme.of(context).colorScheme.primary
                             : Colors.amber,
                   ),
@@ -83,9 +83,9 @@ class SkillProficiencyWdgt extends StatelessWidget {
   }
 
   IconData? _defineIcon() {
-    if (proficiency == ProficiencyType.NonProficient) {
+    if (proficiency == ProficiencyType.nonProficient) {
       return Icons.circle_outlined;
-    } else if (proficiency == ProficiencyType.Proficient) {
+    } else if (proficiency == ProficiencyType.proficient) {
       return Icons.circle;
     } else {
       return Icons.star;

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 class CharacterProfileView extends StatefulWidget {
   final CharacterViewModel character;
 
-  const CharacterProfileView({required this.character});
+  const CharacterProfileView({super.key, required this.character});
 
   @override
   State<CharacterProfileView> createState() => _CharacterProfileViewState();
@@ -16,7 +16,7 @@ class _CharacterProfileViewState extends State<CharacterProfileView> {
   Widget build(BuildContext context) {
     return Consumer<CharacterViewModel>(builder: (context, character, w) {
       return Container(
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -57,7 +57,7 @@ class _CharacterProfileViewState extends State<CharacterProfileView> {
                         height: 150,
                         width: 150,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.background,
+                          color: Theme.of(context).colorScheme.surface,
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: Theme.of(context).colorScheme.outline,
@@ -88,8 +88,9 @@ class _CharacterProfileViewState extends State<CharacterProfileView> {
                       _buildProperty(
                         icon: Icons.sports_kabaddi,
                         title: 'Bônus de Iniciativa',
-                        text:
-                            '+${widget.character.abilityScores.dexterity.modifier}',
+                        text: '+${widget.character.initiative}'
+                            ''
+                            '',
                       ),
                     ],
                   ),

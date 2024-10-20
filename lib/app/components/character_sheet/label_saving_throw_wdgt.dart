@@ -6,7 +6,7 @@ class LabelSavingThrowWdgt extends StatelessWidget {
   final String title;
   final int value;
 
-  LabelSavingThrowWdgt({
+  const LabelSavingThrowWdgt({super.key, 
     required this.proficiency,
     required this.title,
     required this.value,
@@ -14,10 +14,10 @@ class LabelSavingThrowWdgt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _proficiency = false;
-    proficiency == ProficiencyType.NonProficient
-        ? _proficiency = false
-        : _proficiency = true;
+    bool proficiency = false;
+    proficiency == ProficiencyType.nonProficient
+        ? proficiency = false
+        : proficiency = true;
 
     return SizedBox(
       height: 50,
@@ -30,7 +30,7 @@ class LabelSavingThrowWdgt extends StatelessWidget {
             child: Container(
               constraints: const BoxConstraints(maxWidth: 80),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: Theme.of(context).colorScheme.outline,
@@ -48,7 +48,7 @@ class LabelSavingThrowWdgt extends StatelessWidget {
               margin: const EdgeInsets.only(left: 6),
               width: 15,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 shape: BoxShape.circle,
               ),
               child: Checkbox(
@@ -58,7 +58,7 @@ class LabelSavingThrowWdgt extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(5),
                 ),
-                value: _proficiency,
+                value: proficiency,
                 onChanged: null,
               ),
             ),
@@ -72,9 +72,9 @@ class LabelSavingThrowWdgt extends StatelessWidget {
               width: 25,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
                 border: Border.all(
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                   strokeAlign: 0.5,
                 ),
               ),

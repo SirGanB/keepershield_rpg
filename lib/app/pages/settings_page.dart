@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/repository/characters_repository.dart';
-import 'package:keepershield_rpg/repository/tables_repository.dart';
-import 'package:keepershield_rpg/services/auth.service.dart';
 import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -13,11 +11,9 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   late CharactersRepository characters;
-  late TablesRepository tables;
 
   @override
   Widget build(BuildContext context) {
-    tables = Provider.of<TablesRepository>(context);
     characters = Provider.of<CharactersRepository>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -25,7 +21,7 @@ class _SettingsPageState extends State<SettingsPage> {
         customBtn(
           context,
           text: 'Sair',
-          onPressed: () => AuthService().logout(),
+          onPressed: () {},
         ),
       ]),
     );

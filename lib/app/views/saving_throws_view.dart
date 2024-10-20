@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/character_sheet/label_saving_throw_wdgt.dart';
 import 'package:keepershield_rpg/app/components/default/custom_divider_wdgt.dart';
-import 'package:keepershield_rpg/models/ability_model.dart';
 import 'package:keepershield_rpg/models/definitions.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class SavingThrowsView extends StatefulWidget {
   final CharacterViewModel character;
-  const SavingThrowsView({required this.character});
+  const SavingThrowsView({super.key, required this.character});
 
   @override
   State<SavingThrowsView> createState() => _SavingThrowsViewState();
@@ -29,53 +28,38 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
                 GestureDetector(
                   onLongPressStart: (details) {
                     _showEditPopup(
-                      ability: character.abilityScores.strength,
-                      text: 'Força',
+                      ability: 'EXP',
+                      text: 'EXEMPLO',
                     );
                   },
                   child: LabelSavingThrowWdgt(
-                    title: 'FOR',
-                    proficiency: character.abilityScores.strength.proficiency,
-                    value: character.defineProficiencyValue(
-                      modifier: character.abilityScores.strength.modifier,
-                      proficiency: character.abilityScores.strength.proficiency,
-                    ),
-                  ),
+                      title: 'VAR',
+                      proficiency: ProficiencyType.nonProficient,
+                      value: 0),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
                     _showEditPopup(
-                      ability: character.abilityScores.dexterity,
-                      text: 'Destreza',
+                      ability: 'EXP',
+                      text: 'EXEMPLO',
                     );
                   },
                   child: LabelSavingThrowWdgt(
-                    title: 'DES',
-                    proficiency: character.abilityScores.dexterity.proficiency,
-                    value: character.defineProficiencyValue(
-                      modifier: character.abilityScores.dexterity.modifier,
-                      proficiency:
-                          character.abilityScores.dexterity.proficiency,
-                    ),
-                  ),
+                      title: 'VAR',
+                      proficiency: ProficiencyType.nonProficient,
+                      value: 0),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
                     _showEditPopup(
-                      ability: character.abilityScores.constitution,
-                      text: 'Constituição',
+                      ability: 'EXP',
+                      text: 'EXEMPLO',
                     );
                   },
                   child: LabelSavingThrowWdgt(
-                    title: 'CON',
-                    proficiency:
-                        character.abilityScores.constitution.proficiency,
-                    value: character.defineProficiencyValue(
-                      modifier: character.abilityScores.constitution.modifier,
-                      proficiency:
-                          character.abilityScores.constitution.proficiency,
-                    ),
-                  ),
+                      title: 'VAR',
+                      proficiency: ProficiencyType.nonProficient,
+                      value: 0),
                 ),
               ],
             ),
@@ -88,52 +72,38 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
                 GestureDetector(
                   onLongPressStart: (details) {
                     _showEditPopup(
-                      ability: character.abilityScores.intelligence,
-                      text: 'Inteligência',
+                      ability: 'EXP',
+                      text: 'EXEMPLO',
                     );
                   },
                   child: LabelSavingThrowWdgt(
-                    title: 'INT',
-                    proficiency:
-                        character.abilityScores.intelligence.proficiency,
-                    value: character.defineProficiencyValue(
-                      modifier: character.abilityScores.intelligence.modifier,
-                      proficiency:
-                          character.abilityScores.intelligence.proficiency,
-                    ),
-                  ),
+                      title: 'VAR',
+                      proficiency: ProficiencyType.nonProficient,
+                      value: 0),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
                     _showEditPopup(
-                      ability: character.abilityScores.wisdom,
-                      text: 'Sabedoria',
+                      ability: 'EXP',
+                      text: 'EXEMPLO',
                     );
                   },
                   child: LabelSavingThrowWdgt(
-                    title: 'SAB',
-                    proficiency: character.abilityScores.wisdom.proficiency,
-                    value: character.defineProficiencyValue(
-                      modifier: character.abilityScores.wisdom.modifier,
-                      proficiency: character.abilityScores.wisdom.proficiency,
-                    ),
-                  ),
+                      title: 'VAR',
+                      proficiency: ProficiencyType.nonProficient,
+                      value: 0),
                 ),
                 GestureDetector(
                   onLongPressStart: (details) {
                     _showEditPopup(
-                      ability: character.abilityScores.charisma,
-                      text: 'Carisma',
+                      ability: 'EXP',
+                      text: 'EXEMPLO',
                     );
                   },
                   child: LabelSavingThrowWdgt(
-                    title: 'CAR',
-                    proficiency: character.abilityScores.charisma.proficiency,
-                    value: character.defineProficiencyValue(
-                      modifier: character.abilityScores.charisma.modifier,
-                      proficiency: character.abilityScores.charisma.proficiency,
-                    ),
-                  ),
+                      title: 'VAR',
+                      proficiency: ProficiencyType.nonProficient,
+                      value: 0),
                 ),
               ],
             ),
@@ -143,7 +113,7 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
     );
   }
 
-  void _showEditPopup({required String text, required AbilityModel ability}) {
+  void _showEditPopup({required String text, required String ability}) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -167,12 +137,12 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
                   children: [
                     _buildProficiencyBtn(
                       text: 'Não'.toUpperCase(),
-                      proficiency: ProficiencyType.NonProficient,
+                      proficiency: ProficiencyType.nonProficient,
                       ability: ability,
                     ),
                     _buildProficiencyBtn(
                       text: 'Sim'.toUpperCase(),
-                      proficiency: ProficiencyType.Proficient,
+                      proficiency: ProficiencyType.proficient,
                       ability: ability,
                     ),
                   ],
@@ -188,14 +158,15 @@ class _SavingThrowsViewState extends State<SavingThrowsView> {
   TextButton _buildProficiencyBtn({
     required String text,
     required ProficiencyType proficiency,
-    required AbilityModel ability,
+    required String ability,
   }) {
     return TextButton(
-      onPressed: () async {
-        widget.character.updateSavingThrow(
-          ability: ability,
-          proficiency: proficiency,
-        );
+      onPressed: () {
+        //async {
+        //widget.character.updateSavingThrow(
+        //  ability: ability,
+        //  proficiency: proficiency,
+        //);
 
         Navigator.pop(context);
       },

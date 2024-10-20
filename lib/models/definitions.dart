@@ -1,17 +1,17 @@
-enum ActionType { Action, BonusAction, Reaction, Legendary, Aura }
+enum ActionType { action, bonusAction, reaction, legendary, aura }
 
-enum AttackType { RangeWeapon, MeleeWeapon, RangeSpell, MeleeSpell }
+enum AttackType { rangeWeapon, meleeWeapon, rangeSpell, meleeSpell }
 
-enum ProficiencyType { NonProficient, Proficient, Expert }
+enum ProficiencyType { nonProficient, proficient, expert }
 
 enum AlignmentType {
-  LawfulGood,
-  NeutralGood,
-  ChaoticGood,
-  LawfulNeutral,
-  TrueNeutral,
-  ChaoticNeutral,
-  LawfulEvil,
-  NeutralEvil,
-  ChaoticEvil,
+  lawfulGood,
+  neutralGood,
+  chaoticGood,
+  lawfulNeutral,
+  trueNeutral,
+  chaoticNeutral,
+  lawfulEvil,
+  neutralEvil,
+  chaoticEvil,
 }

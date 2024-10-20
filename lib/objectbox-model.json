@@ -1,0 +1,245 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:1963882520613576514",
+      "lastPropertyId": "1:8948608465402224204",
+      "name": "AbilityScoresCollection",
+      "properties": [
+        {
+          "id": "1:8948608465402224204",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:8259666714863731140",
+      "lastPropertyId": "12:1964937715940948402",
+      "name": "CharacterModel",
+      "properties": [
+        {
+          "id": "1:8327608792326124552",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1562282177973208123",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:4140737394114532060",
+          "name": "race",
+          "type": 9
+        },
+        {
+          "id": "4:7034440663301788722",
+          "name": "currentHealth",
+          "type": 6
+        },
+        {
+          "id": "5:4082990265445723949",
+          "name": "maxHealth",
+          "type": 6
+        },
+        {
+          "id": "6:3999541886309340123",
+          "name": "speed",
+          "type": 6
+        },
+        {
+          "id": "7:7472032465667776016",
+          "name": "strength",
+          "type": 6
+        },
+        {
+          "id": "8:3516095175769080649",
+          "name": "dexterity",
+          "type": 6
+        },
+        {
+          "id": "9:4513704185553556262",
+          "name": "constitution",
+          "type": 6
+        },
+        {
+          "id": "10:7509304936426371769",
+          "name": "intelligence",
+          "type": 6
+        },
+        {
+          "id": "11:2455637448875294405",
+          "name": "wisdom",
+          "type": 6
+        },
+        {
+          "id": "12:1964937715940948402",
+          "name": "charisma",
+          "type": 6
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:6474753775249196188",
+          "name": "classes",
+          "targetId": "4:4642805264547309401"
+        }
+      ]
+    },
+    {
+      "id": "3:8801543994818437444",
+      "lastPropertyId": "2:494378801292448423",
+      "name": "Charisma",
+      "properties": [
+        {
+          "id": "1:150662009245199988",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:494378801292448423",
+          "name": "value",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "4:4642805264547309401",
+      "lastPropertyId": "3:5667722911350410565",
+      "name": "ClasseModel",
+      "properties": [
+        {
+          "id": "1:7219035457468796002",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4642985736208823664",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:5667722911350410565",
+          "name": "level",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "5:5460617520294082274",
+      "lastPropertyId": "2:4702360303126032932",
+      "name": "Constitution",
+      "properties": [
+        {
+          "id": "1:3646144379124172042",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4702360303126032932",
+          "name": "value",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "6:3572628665639154884",
+      "lastPropertyId": "2:2967673040901377500",
+      "name": "Dexterity",
+      "properties": [
+        {
+          "id": "1:8759079076159616875",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2967673040901377500",
+          "name": "value",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "7:663584836182773569",
+      "lastPropertyId": "2:5136874382867810714",
+      "name": "Intelligence",
+      "properties": [
+        {
+          "id": "1:1215939274134270802",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5136874382867810714",
+          "name": "value",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "8:3527354931177756063",
+      "lastPropertyId": "2:5547314170089507350",
+      "name": "Strength",
+      "properties": [
+        {
+          "id": "1:570708655969083781",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5547314170089507350",
+          "name": "value",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "9:5142148247538147731",
+      "lastPropertyId": "2:3043100442529788390",
+      "name": "Wisdom",
+      "properties": [
+        {
+          "id": "1:3843042693650837827",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3043100442529788390",
+          "name": "value",
+          "type": 6
+        }
+      ],
+      "relations": []
+    }
+  ],
+  "lastEntityId": "9:5142148247538147731",
+  "lastIndexId": "0:0",
+  "lastRelationId": "1:6474753775249196188",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

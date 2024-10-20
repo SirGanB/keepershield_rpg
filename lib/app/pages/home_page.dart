@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
                 Tab(child: Icon(Icons.settings)),
               ]),
         ),
-        body: const TabBarView(children: [
+        body: TabBarView(children: [
           MenuCharacterPage(),
           SettingsPage(),
         ]),

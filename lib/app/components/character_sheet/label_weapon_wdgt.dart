@@ -8,7 +8,7 @@ class LabelWeaponWdgt extends StatelessWidget {
   final ProficiencyType proficiency;
   final bool isEquiped;
 
-  const LabelWeaponWdgt({
+  const LabelWeaponWdgt({super.key, 
     required this.weapon,
     required this.attack,
     required this.damage,
@@ -40,7 +40,7 @@ class LabelWeaponWdgt extends StatelessWidget {
                           child: _buildValueLabel(
                             context,
                             text: 'Arma',
-                            value: '$weapon',
+                            value: weapon,
                           ),
                         ),
                       ),
@@ -76,7 +76,7 @@ class LabelWeaponWdgt extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(color: Colors.amber),
             borderRadius: BorderRadius.circular(10),
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.surface,
           ),
           padding: EdgeInsets.symmetric(horizontal: 8),
           child: Container(
@@ -111,7 +111,7 @@ class LabelWeaponWdgt extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 12,
-              color: proficiency == ProficiencyType.Proficient
+              color: proficiency == ProficiencyType.proficient
                   ? Theme.of(context).colorScheme.primary
                   : Theme.of(context).colorScheme.secondary,
             ),

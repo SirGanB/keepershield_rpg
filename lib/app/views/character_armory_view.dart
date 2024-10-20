@@ -6,7 +6,7 @@ import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class CharacterArmoryView extends StatelessWidget {
-  const CharacterArmoryView();
+  const CharacterArmoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,32 +20,32 @@ class CharacterArmoryView extends StatelessWidget {
           ),
           LabelWeaponWdgt(
             weapon: 'Espada Grande',
-            proficiency: ProficiencyType.Proficient,
+            proficiency: ProficiencyType.proficient,
             attack: 2,
             damage: 5,
           ),
           LabelWeaponWdgt(
             weapon: 'Espada Grande',
-            proficiency: ProficiencyType.Proficient,
+            proficiency: ProficiencyType.proficient,
             attack: 2,
             damage: 5,
           ),
           LabelWeaponWdgt(
             weapon: 'Espada Grande',
-            proficiency: ProficiencyType.Proficient,
+            proficiency: ProficiencyType.proficient,
             attack: 2,
             damage: 5,
           ),
           LabelWeaponWdgt(
             weapon: 'Arco Longo',
-            proficiency: ProficiencyType.Proficient,
+            proficiency: ProficiencyType.proficient,
             attack: 7,
             damage: 6,
             isEquiped: true,
           ),
           LabelWeaponWdgt(
             weapon: 'Tridente',
-            proficiency: ProficiencyType.NonProficient,
+            proficiency: ProficiencyType.nonProficient,
             attack: -1,
             damage: 3,
           ),

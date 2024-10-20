@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:keepershield_rpg/app/components/_lib_components.dart';
-import 'package:provider/provider.dart';
 import 'package:keepershield_rpg/app/views/ability_scores_view.dart';
 import 'package:keepershield_rpg/app/views/character_history_view.dart';
 import 'package:keepershield_rpg/app/views/character_profile_view.dart';
 import 'package:keepershield_rpg/app/views/saving_throws_view.dart';
-import 'package:keepershield_rpg/app/views/skills_profiency_view.dart';
+import 'package:keepershield_rpg/app/views/skills_proficiency_view.dart';
 import 'package:keepershield_rpg/view_model/character_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class CharacterPage extends StatefulWidget {
   final CharacterViewModel character;
 
-  const CharacterPage({Key? key, required this.character}) : super(key: key);
+  const CharacterPage({super.key, required this.character});
 
   @override
   _CharacterPageState createState() => _CharacterPageState();
@@ -81,9 +81,9 @@ class _CharacterPageState extends State<CharacterPage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          AbilityScoresView(character: widget.character),
+          AbilityScoresView(char: widget.character),
           SavingThrowsView(character: widget.character),
-          SkillsProficencyView(character: widget.character),
+          SkillsProficencyView(character: widget.character)
         ],
       ),
     );

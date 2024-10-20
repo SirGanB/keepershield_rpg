@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/models/ability_model.dart';
 
 class LabelAbilityScores extends StatelessWidget {
   final String title;
-  final AbilityModel ability;
+  final int ability;
 
-  const LabelAbilityScores({required this.ability, required this.title});
+  const LabelAbilityScores({super.key, required this.ability, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +27,7 @@ class LabelAbilityScores extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  ability.modifier > 0
-                      ? '+${ability.modifier}'
-                      : '${ability.modifier}',
+                  ability > 0 ? '+$ability' : '$ability',
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
@@ -50,7 +47,7 @@ class LabelAbilityScores extends StatelessWidget {
                       bottomLeft: Radius.circular(5),
                       bottomRight: Radius.circular(5),
                     ),
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.surface,
                     border: Border.all(
                         color: Theme.of(context).colorScheme.outline, width: 2),
                   ),
@@ -78,15 +75,15 @@ class LabelAbilityScores extends StatelessWidget {
                   width: 40,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    color: Theme.of(context).colorScheme.background,
+                    color: Theme.of(context).colorScheme.surface,
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                       strokeAlign: 0.5,
                     ),
                   ),
                   child: Center(
                     child: Text(
-                      '${ability.value}',
+                      '1',
                       style: const TextStyle(fontSize: 10),
                     ),
                   ),

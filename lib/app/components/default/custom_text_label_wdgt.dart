@@ -5,7 +5,7 @@ class CustomTextLabelWdgt extends StatelessWidget {
   final String title;
   final bool isBorder;
 
-  const CustomTextLabelWdgt({
+  const CustomTextLabelWdgt({super.key, 
     required this.text,
     required this.title,
     this.isBorder = false,
