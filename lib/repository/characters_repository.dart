@@ -1,7 +1,6 @@
 import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:keepershield_rpg/models/_lib_model.dart';
+import 'package:keepershield_rpg/models/character_model.dart';
 import 'package:keepershield_rpg/objectbox.g.dart';
 
 class CharactersRepository extends ChangeNotifier {
@@ -16,6 +15,9 @@ class CharactersRepository extends ChangeNotifier {
 
   // Metodo público para inicializar o repositório e carregar os personagens
   Future<void> initialize() async {
+    // Verifica se já foi inicializado
+    if (_isInitialized) return;
+
     // Define a caixa para personagens
     _characterBox = _store.box<CharacterModel>();
     await _loadAll();

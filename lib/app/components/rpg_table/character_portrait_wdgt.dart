@@ -8,7 +8,7 @@ class CompCharacterPortrait extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(),
-        color: Theme.of(context).colorScheme.background,
+        color: Theme.of(context).colorScheme.surface,
       ),
       margin: const EdgeInsets.fromLTRB(0, 5, 8, 5),
       height: 150,

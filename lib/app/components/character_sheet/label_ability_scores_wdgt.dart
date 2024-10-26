@@ -83,7 +83,7 @@ class LabelAbilityScores extends StatelessWidget {
                   ),
                   child: Center(
                     child: Text(
-                      '1',
+                      '$this.ability',
                       style: const TextStyle(fontSize: 10),
                     ),
                   ),

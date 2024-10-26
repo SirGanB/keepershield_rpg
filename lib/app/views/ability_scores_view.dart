@@ -30,7 +30,7 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                   _showEditPopup();
                 },
                 child: LabelAbilityScores(
-                  title: 'Atributo',
+                  title: 'Força',
                   ability: char.strength,
                 ),
               ),
@@ -39,8 +39,8 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                   _showEditPopup(                  );
                 },
                 child: LabelAbilityScores(
-                  title: 'Atributo',
-                  ability: char.strength,
+                  title: 'Destreza',
+                  ability: char.dexterity,
                 ),
               ),
               GestureDetector(
@@ -49,8 +49,8 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                   );
                 },
                 child: LabelAbilityScores(
-                  title: 'Atributo',
-                  ability: char.strength,
+                  title: 'Constituição',
+                  ability: char.constitution,
                 ),
               ),
             ],
@@ -65,8 +65,8 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                 );
               },
               child: LabelAbilityScores(
-                title: 'Atributo',
-                ability: char.strength,
+                title: 'Inteligencia',
+                ability: char.intelligence,
               ),
             ),
             GestureDetector(
@@ -75,8 +75,8 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                 );
               },
               child: LabelAbilityScores(
-                title: 'Atributo',
-                ability: char.strength,
+                title: 'Sabedoria',
+                ability: char.wisdom,
               ),
             ),
             GestureDetector(
@@ -85,8 +85,8 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                 );
               },
               child: LabelAbilityScores(
-                title: 'Atributo',
-                ability: char.strength,
+                title: 'Carisma',
+                ability: char.charisma,
               ),
             ),
           ],
@@ -129,11 +129,6 @@ class _AbilityScoresViewState extends State<AbilityScoresView> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      //widget.char.updateAbilityScore(
-                      //  value: int.parse(controller.text),
-                      //  ability: ability,
-                      //);
-
                       Navigator.pop(context);
                       controller.clear();
                     },

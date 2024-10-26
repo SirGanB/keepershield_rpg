@@ -19,25 +19,25 @@ class _MenuCharacterPageState extends State<MenuCharacterPage> {
   @override
   void initState() {
     super.initState();
-    _initializeRepository();
-  }
-
-  Future<void> _initializeRepository() async {
-    _charactersRepository =
-        Provider.of<CharactersRepository>(context, listen: false);
-    await _charactersRepository.initialize(); // Aguarda a inicialização
-    setState(() {}); // Atualiza a interface após a inicialização
+    _charactersRepository = Provider.of<CharactersRepository>(context, listen: false);
   }
 
   void _createCharacter() {
     if (_charactersRepository.isInitialized) {
       // Criar um novo personagem (você pode personalizar esse CharacterModel)
       final newCharacter = CharacterModel(
-        // Defina os atributos necessários para criar um personagem
         name: 'Novo Personagem',
         // Outros atributos
       );
-      _charactersRepository.create(character: newCharacter);
+      try {
+        _charactersRepository.create(character: newCharacter);
+        // Opcional: Notificar o usuário que o personagem foi criado
+      } catch (e) {
+        // Tratar erro ao criar personagem
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Erro ao criar personagem: $e')),
+        );
+      }
     } else {
       // Exiba uma mensagem de erro ou aguarde a inicialização
       ScaffoldMessenger.of(context).showSnackBar(
